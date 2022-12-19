@@ -24,7 +24,6 @@ colorscheme_possibilities = {
     'quiet',
     'slate',
     'srcery',
-    'tokyonight-night',
     'torte',
 }
 

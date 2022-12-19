@@ -7,7 +7,7 @@ lsp.volar.setup(coq.lsp_ensure_capabilities({
     init_options = {
         typescript = {
             tsdk = '/usr/local/lib/node_modules/typescript/lib'
-        }
+        },
     }
 }))
 
@@ -34,7 +34,8 @@ lsp.cssls.setup (coq.lsp_ensure_capabilities({
     capabilities = capabilities    
 }))
 
-lsp.cssmodules_ls.setup(coq.lsp_ensure_capabilities())
+-- Tailwind BASICALLY WILL NOT WORK
+-- lsp.tailwindcss.setup(coq.lsp_ensure_capabilities())
 
 -- Emmet
 lsp.emmet_ls.setup(coq.lsp_ensure_capabilities({}))
@@ -46,7 +47,7 @@ lsp.pyright.setup(coq.lsp_ensure_capabilities())
 lsp.intelephense.setup(coq.lsp_ensure_capabilities())
 
 -- Lua --
-lsp.sumneko_lua.setup {
+lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
     settings = {
         runtime = {
             version = 'LuaJIT',
@@ -61,4 +62,4 @@ lsp.sumneko_lua.setup {
             enable = false,
         },
     },
-}
+}))
