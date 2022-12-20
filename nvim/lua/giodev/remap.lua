@@ -58,7 +58,7 @@ nnoremap("<leader>lf", "<cmd>Lspsaga lsp_finder<CR>", {silent = true})
 nnoremap("<leader>la", "<cmd>Lspsaga code_action<CR>", {silent = true})
 nnoremap("<leader>lr", "<cmd>Lspsaga rename<CR>", {silent = true})
 nnoremap("<leader>ld", "<cmd>Lspsaga peek_definition<CR>", {silent = true})
-luamap("<leader>le", "vim.diagnostic.open_float()", {silent = true})
+nnoremap("<leader>le", luamap("vim.diagnostic.open_float()"), {silent = true})
 
 -- Barbar
 nnoremap("<leader>bh", "<cmd>BufferPrevious<CR>")

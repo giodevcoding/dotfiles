@@ -11,8 +11,10 @@ local function bind(op, outer_opts)
     end
 end
 
-local function luamap(func) 
-    return "<cmd>lua " .. func .. "<CR>"
+local function luamap() 
+    return function(func)
+        return "<cmd>lua " .. func .. "<CR>"
+    end
 end
 
 M.nmap = bind("n", {noremap = false})
@@ -21,6 +23,6 @@ M.vnoremap = bind("v")
 M.xnoremap = bind("x")
 M.inoremap = bind("i")
 M.tnoremap = bind("t")
-M.luamap = luamap
+M.luamap = luamap()
 
 return M
