@@ -1,6 +1,7 @@
 require("toggleterm").setup {
     size = 12,
-    open_mapping = '<C-\\>/',
+    open_mapping = '<C-\\>',
+    autochdir = true,
     winbar = {
         enabled = true
     }

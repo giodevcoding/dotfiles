@@ -7,8 +7,7 @@ local luamap = require("giodev.keymap").luamap
 
 -- Stupid Touchbar on Mac
 nnoremap("<C-`>", "<Esc>")
-tnoremap("<C-`>", "<Esc>")
-inoremap("<C-`>", "<Esc>")
+tnoremap("<C-`>", "<Esc>") inoremap("<C-`>", "<Esc>")
 vnoremap("<C-`>", "<Esc>")
 xnoremap("<C-`>", "<Esc>")
 
@@ -45,6 +44,8 @@ nnoremap("<leader>`c", "<cmd>ToggleTerm<CR>")
 nnoremap("<leader>`q", "<cmd>bd!<CR>")
 tnoremap("<C-q>", "<cmd>ToggleTerm<CR>")
 tnoremap("<Esc>", "<C-\\><C-n>")
+-- cd to NvimTree CWD
+nnoremap("<leader>`d", function() return "<cmd>TermExec cmd='cd \"" .. require("nvim-tree.core").get_cwd() .. "\"'<CR>" end, {expr = true})
 
 -- Prettier
 nnoremap("<leader>pr", "<cmd>Prettier<CR>")
