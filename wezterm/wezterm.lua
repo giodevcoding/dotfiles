@@ -11,8 +11,29 @@ M = {
         cursor_bg = '#8BE9FD',
         cursor_fg = '#0E1419',
         selection_bg = '#44475A',
-    }
+    },
+    enable_scroll_bar = true,
+    --bg
+    background = {
+       {
+            source = {
+                File = (wezterm.home_dir .. "/.config/wezterm/bgcolor.png")
+            },
+            opacity = 1,
+        },
+        {
+            source = {
+                File = (wezterm.home_dir .. "/.config/wezterm/forestmountain.png")
+            },
+            opacity = 0.25,
+            hsb = {
+                brightness = 0.1
+            }
+        },
+    },
 }
+
+
 
 function exists(file)
     local ok, err, code = os.rename(file, file)
