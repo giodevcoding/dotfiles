@@ -1,5 +1,9 @@
 local wezterm = require 'wezterm'
 
+math.randomseed(os.time())
+
+bg_img_num = math.random(1, 11)
+
 M = {
 --    default_prog = { 'wsl' },
     font = wezterm.font 'FiraCode Nerd Font Mono',
@@ -18,14 +22,14 @@ M = {
        {
             source = {
                 File = (wezterm.home_dir .. "/.config/wezterm/bgcolor.png")
-            },
+            }, 
             opacity = 1,
         },
-        {
+        { 
             source = {
-                File = (wezterm.home_dir .. "/.config/wezterm/forestmountain.png")
+                File = (wezterm.home_dir .. "/.config/wezterm/wezbgs/" .. bg_img_num .. ".png")
             },
-            opacity = 0.25,
+            opacity = 0.33,
             hsb = {
                 brightness = 0.1
             }
