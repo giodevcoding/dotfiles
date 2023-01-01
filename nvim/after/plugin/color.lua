@@ -9,19 +9,16 @@ vim.g.monochrome_italic_comments = true
 
 colorscheme_possibilities = {
     'aurora',
-    'default',
-    'elflord',
+    'aurora',
+    'aurora',
     'everblush',
-    'industry',
-    'koehler',
     'kuroi',
     'moonfly',
-    'murphy',
+    'moonfly',
+    'moonfly',
     'monochrome',
     'night-owl',
     'nord',
-    'quiet',
-    'slate',
     'srcery',
     'torte',
 }
@@ -39,6 +36,7 @@ vim.cmd("colorscheme " .. chosen_colorscheme)
 
 function fullTransparent()
     vim.cmd[[hi Normal guibg=none ctermbg=none]]
+    vim.cmd[[hi NormalNC guibg=none ctermbg=none]]
     vim.cmd[[hi LineNr guibg=none ctermbg=none]]
     vim.cmd[[hi Folded guibg=none ctermbg=none]]
     vim.cmd[[hi NonText guibg=none ctermbg=none]]
@@ -46,7 +44,13 @@ function fullTransparent()
     vim.cmd[[hi VertSplit guibg=none ctermbg=none]]
     vim.cmd[[hi SignColumn guibg=none ctermbg=none]]
     vim.cmd[[hi EndOfBuffer guibg=none ctermbg=none]]
+    vim.cmd[[hi Terminal guibg=none ctermbg=none]]
+    vim.cmd[[hi NvimTree guibg=none ctermbg=none]]
+    vim.cmd[[hi NvimTreeNormal guibg=none ctermbg=none]]
+    vim.cmd[[hi TelescopeNormal guibg=none ctermbg=none]]
 end
+
+fullTransparent()
 
 -- Create command to randomize colorscheme
 vim.api.nvim_create_user_command(

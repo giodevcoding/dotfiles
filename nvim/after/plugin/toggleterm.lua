@@ -4,7 +4,8 @@ require("toggleterm").setup {
     autochdir = true,
     winbar = {
         enabled = true
-    }
+    },
+    shade_terminals = false
 }
 
 local lazy = require("toggleterm.lazy")

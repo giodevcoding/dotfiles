@@ -18,7 +18,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.infercase = true
 vim.opt.fileignorecase = true
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false

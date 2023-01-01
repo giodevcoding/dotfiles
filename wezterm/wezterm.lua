@@ -16,7 +16,7 @@ M = {
         cursor_fg = '#0E1419',
         selection_bg = '#44475A',
     },
-    enable_scroll_bar = true,
+    hide_tab_bar_if_only_one_tab = true,
     --bg
     background = {
        {
@@ -33,6 +33,13 @@ M = {
             hsb = {
                 brightness = 0.1
             }
+        },
+    },
+    keys = {
+        {
+            key = 'F11',
+            mods = 'SHIFT|CTRL',
+            action = wezterm.action.ToggleFullScreen,
         },
     },
 }
