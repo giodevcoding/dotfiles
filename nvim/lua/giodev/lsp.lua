@@ -44,7 +44,34 @@ lsp.emmet_ls.setup(coq.lsp_ensure_capabilities({}))
 lsp.pyright.setup(coq.lsp_ensure_capabilities())
 
 -- PHP --
-lsp.intelephense.setup(coq.lsp_ensure_capabilities())
+lsp.intelephense.setup(coq.lsp_ensure_capabilities({
+    settings = {
+        intelephense = {
+            stubs = {
+                "bcmath",
+                "bz2",
+                "calendar",
+                "Core",
+                "curl",
+                "zip",
+                "zlib",
+                "wordpress",
+                "woocommerce",
+                "acf-pro",
+                "wordpress-globals",
+                "wp-cli",
+                "genesis",
+                "polylang"
+            },
+            environment = {
+                includePaths = "~/.config/composer/vendor/php-stubs/"
+            },
+            files = {
+                masxSize = 5000000;
+            };
+        };
+    }
+}))
 
 -- Lua --
 lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
