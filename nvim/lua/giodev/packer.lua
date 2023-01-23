@@ -110,7 +110,7 @@ return require('packer').startup(function()
         branch = "main",
         config = function()
             local saga = require("lspsaga")
-            saga.init_lsp_saga()
+            saga.setup({})
         end,
     })
 
