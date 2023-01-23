@@ -42,6 +42,13 @@ M = {
             action = wezterm.action.ToggleFullScreen,
         },
     },
+    keys = {
+        {
+            key = 'h',
+            mods = 'SHIFT|CTRL',
+            action = wezterm.action.ToggleFullScreen,
+        },
+    },
 }
 
 
@@ -56,6 +63,12 @@ function exists(file)
     return ok, err
 end
 
+-- Mac
+if (exists("/System/Library/")) then
+    M.font_size = 14.0
+end
+
+-- Windows
 if (not exists("/opt/")) then
 --    M.default_prog = { 'wsl' }
 end
