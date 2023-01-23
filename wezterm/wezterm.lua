@@ -41,8 +41,6 @@ M = {
             mods = 'SHIFT|CTRL',
             action = wezterm.action.ToggleFullScreen,
         },
-    },
-    keys = {
         {
             key = 'h',
             mods = 'SHIFT|CTRL',
@@ -53,7 +51,7 @@ M = {
 
 
 
-function exists(file)
+local function exists(file)
     local ok, err, code = os.rename(file, file)
     if not ok then
         if code == 13 then
@@ -66,6 +64,7 @@ end
 -- Mac
 if (exists("/System/Library/")) then
     M.font_size = 14.0
+    M.term = "screen-256color"
 end
 
 -- Windows
