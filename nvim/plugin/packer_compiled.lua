@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/giovanni/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/giovanni/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/giovanni/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/giovanni/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/giovanni/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/giodev/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/giodev/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/giodev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/giodev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/giodev/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,188 +76,188 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   aurora = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/aurora",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/aurora",
     url = "https://github.com/ray-x/aurora"
   },
   ["barbar.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/barbar.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim",
     wants = { "nvim-web-devicons" }
   },
   ["coq.artifacts"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/coq.artifacts",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/coq.artifacts",
     url = "https://github.com/ms-jpq/coq.artifacts"
   },
   ["coq.thirdparty"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/coq.thirdparty",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/coq.thirdparty",
     url = "https://github.com/ms-jpq/coq.thirdparty"
   },
   coq_nvim = {
     config = { "\27LJ\2\n*\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\vCOQnow\bcmd\bvim\0" },
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/coq_nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/coq_nvim",
     url = "https://github.com/ms-jpq/coq_nvim"
   },
   ["emmet-vim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
   },
   ["everblush.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/everblush.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/everblush.nvim",
     url = "https://github.com/Everblush/everblush.nvim"
   },
   ["kuroi.vim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/kuroi.vim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/kuroi.vim",
     url = "https://github.com/aonemd/kuroi.vim"
   },
   ["lspkind.nvim"] = {
     config = { "\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tinit\flspkind\frequire\0" },
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
     url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lspsaga.nvim"] = {
     config = { "\27LJ\2\n9\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\nsetup\flspsaga\frequire\0" },
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0" },
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["night-owl.vim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/night-owl.vim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/night-owl.vim",
     url = "https://github.com/haishanh/night-owl.vim"
   },
   ["nord.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   rigel = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/rigel",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/rigel",
     url = "https://github.com/Rigellute/rigel"
   },
   srcery = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/srcery",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/srcery",
     url = "https://github.com/srcery-colors/srcery-vim"
   },
   ["symbols-outline.nvim"] = {
     config = { "\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20symbols-outline\frequire\0" },
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
     url = "https://github.com/simrat39/symbols-outline.nvim"
   },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
     url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
   undotree = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/undotree",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-monochrome"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/vim-monochrome",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-monochrome",
     url = "https://github.com/fxn/vim-monochrome"
   },
   ["vim-moonfly-colors"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors",
     url = "https://github.com/bluz71/vim-moonfly-colors"
   },
   ["vim-prettier"] = {
     loaded = true,
-    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/vim-prettier",
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-prettier",
     url = "https://github.com/prettier/vim-prettier"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
-time([[Config for lspsaga.nvim]], false)
--- Config for: symbols-outline.nvim
-time([[Config for symbols-outline.nvim]], true)
-try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20symbols-outline\frequire\0", "config", "symbols-outline.nvim")
-time([[Config for symbols-outline.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
--- Config for: lspkind.nvim
-time([[Config for lspkind.nvim]], true)
-try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tinit\flspkind\frequire\0", "config", "lspkind.nvim")
-time([[Config for lspkind.nvim]], false)
 -- Config for: coq_nvim
 time([[Config for coq_nvim]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\vCOQnow\bcmd\bvim\0", "config", "coq_nvim")
 time([[Config for coq_nvim]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
+time([[Config for lspsaga.nvim]], false)
+-- Config for: lspkind.nvim
+time([[Config for lspkind.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tinit\flspkind\frequire\0", "config", "lspkind.nvim")
+time([[Config for lspkind.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: symbols-outline.nvim
+time([[Config for symbols-outline.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\20symbols-outline\frequire\0", "config", "symbols-outline.nvim")
+time([[Config for symbols-outline.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
