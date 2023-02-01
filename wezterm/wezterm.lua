@@ -69,7 +69,7 @@ end
 
 -- Windows
 if (not exists("/opt/")) then
---    M.default_prog = { 'wsl' }
+    M.default_prog = { 'pwsh-preview' }
 end
 
 return M 
