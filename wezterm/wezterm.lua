@@ -67,8 +67,8 @@ if (exists("/System/Library/")) then
     M.term = "screen-256color"
 end
 
--- Windows
-if (not exists("/opt/")) then
+--Windows
+if (exists("C:\\Windows")) then
     M.default_prog = { 'pwsh-preview' }
 end
 
