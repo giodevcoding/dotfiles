@@ -123,4 +123,7 @@ return require('packer').startup(function()
         tag = "*",
     }
 
+    use 'godlygeek/tabular'
+    use 'preservim/vim-markdown'
+
 end)
