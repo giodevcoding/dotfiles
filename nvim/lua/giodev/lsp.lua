@@ -43,6 +43,8 @@ lsp.emmet_ls.setup(coq.lsp_ensure_capabilities({}))
 -- Python
 lsp.pyright.setup(coq.lsp_ensure_capabilities())
 
+lsp.lua_ls.setup(coq.lsp_ensure_capabilities())
+
 -- PHP --
 lsp.intelephense.setup(coq.lsp_ensure_capabilities({
     settings = {
