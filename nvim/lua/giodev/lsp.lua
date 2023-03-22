@@ -74,19 +74,4 @@ lsp.intelephense.setup(coq.lsp_ensure_capabilities({
 }))
 
 -- Lua --
-lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
-    settings = {
-        runtime = {
-            version = 'LuaJIT',
-        },
-        diagnostics = {
-            globals = {'vim'},
-        },
-        workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-        },
-        telemetry = {
-            enable = false,
-        },
-    },
-}))
+lsp.lua_ls.setup(coq.lsp_ensure_capabilities({}))

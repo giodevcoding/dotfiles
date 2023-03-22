@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["night-owl.vim"] = {
     loaded = true,
     path = "/Users/giovanni/.local/share/nvim/site/pack/packer/start/night-owl.vim",
@@ -238,10 +243,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lspkind.nvim
-time([[Config for lspkind.nvim]], true)
-try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tinit\flspkind\frequire\0", "config", "lspkind.nvim")
-time([[Config for lspkind.nvim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\4\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\1\2\0004\3\0\0B\1\2\1K\0\1\0\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
@@ -258,6 +259,10 @@ time([[Config for lualine.nvim]], false)
 time([[Config for coq_nvim]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\vCOQnow\bcmd\bvim\0", "config", "coq_nvim")
 time([[Config for coq_nvim]], false)
+-- Config for: lspkind.nvim
+time([[Config for lspkind.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\tinit\flspkind\frequire\0", "config", "lspkind.nvim")
+time([[Config for lspkind.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
