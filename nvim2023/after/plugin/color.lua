@@ -19,6 +19,7 @@ function FullTransparent()
 	vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
 end
 
+vim.api.nvim_set_hl(0, "folded", { fg = "grey" })
 
 vim.api.nvim_create_autocmd("ColorScheme", { command = [[ execute "lua FullTransparent()"]] })
 

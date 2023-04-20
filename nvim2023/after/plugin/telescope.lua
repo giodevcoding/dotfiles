@@ -7,3 +7,17 @@ end, {})
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
+
+local telescope = require("telescope")
+
+telescope.setup({
+    extensions = {
+        file_browser = {
+            hijack_netrw = true,
+            mappings = {
+            }
+        }
+    }
+})
+
+telescope.load_extension("file_browser")
