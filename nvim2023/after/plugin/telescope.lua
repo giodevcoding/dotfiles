@@ -21,3 +21,6 @@ telescope.setup({
 })
 
 telescope.load_extension("file_browser")
+
+vim.keymap.set("n", "<leader>pv", "<cmd>Telescope file_browser<CR>")
+

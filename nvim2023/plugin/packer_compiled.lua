@@ -202,6 +202,11 @@ _G.packer_plugins = {
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-colors-pencil"] = {
+    loaded = true,
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-colors-pencil",
+    url = "https://github.com/preservim/vim-colors-pencil"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-fugitive",
