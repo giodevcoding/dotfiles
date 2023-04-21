@@ -58,10 +58,17 @@ return require('packer').startup(function(use)
         }
     }
 
+    use 'nvim-tree/nvim-web-devicons'
+
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true },
         config = function() require('lualine').setup() end
+    }
+
+    use {
+        'romgrk/barbar.nvim',
+        requires = 'nvim-tree/nvim-web-devicons'
     }
 
     use 'prettier/vim-prettier'
