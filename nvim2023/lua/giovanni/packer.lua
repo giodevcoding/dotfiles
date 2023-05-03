@@ -68,7 +68,8 @@ return require('packer').startup(function(use)
 
     use {
         'romgrk/barbar.nvim',
-        requires = 'nvim-tree/nvim-web-devicons'
+        requires = 'nvim-tree/nvim-web-devicons',
+        disable = true
     }
 
     use 'prettier/vim-prettier'
@@ -80,6 +81,24 @@ return require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
 
-    use("folke/zen-mode.nvim")
     use("eandrju/cellular-automaton.nvim")
+
+    -- Zettlekasten & Telekasten
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-telescope/telescope-media-files.nvim'
+    use {
+        'nvim-telescope/telescope-bibtex.nvim',
+        require = {'nvim-telescope/telescope.nvim'}
+    }
+
+    use {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end
+    }
+
+    use {
+        'renerocksai/telekasten.nvim',
+        requires = {'nvim-telescope/telescope.nvim'}
+    }
+
 end)

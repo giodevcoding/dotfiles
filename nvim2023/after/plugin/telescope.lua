@@ -2,7 +2,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ")});
+    builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end, {})
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
@@ -21,6 +21,7 @@ telescope.setup({
 })
 
 telescope.load_extension("file_browser")
+telescope.load_extension("media_files")
+telescope.load_extension("bibtex")
 
 vim.keymap.set("n", "<leader>pv", "<cmd>Telescope file_browser<CR>")
-

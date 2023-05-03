@@ -8,8 +8,9 @@ vim.opt.expandtab = true
 
 vim.api.nvim_create_autocmd("FileType", { pattern = {"javascript", "javascriptreact", "vue", "html", "typescriptreact", "typescript"}, command = [[ setlocal tabstop=2 softtabstop=2 shiftwidth=2 ]] })
 
-vim.opt.smartindent = false
-vim.opt.cindent = true
+vim.opt.autoindent = false;
+vim.opt.smartindent = true
+vim.opt.cindent = false;
 
 vim.opt.wrap = false
 
