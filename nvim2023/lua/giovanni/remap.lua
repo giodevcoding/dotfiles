@@ -29,4 +29,29 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>w", "<C-w>")
 
-vim.keymap.set("n", "<C-n>", "<cmd>noh<CR>")
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
+
+-- Telekasten
+vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
+
+vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<CR>")
+vim.keymap.set("n", "<leader>zN", "<cmd>Telekasten new_templated_note<CR>")
+vim.keymap.set("n", "<leader>zr", "<cmd>Telekasten rename_note<CR>")
+
+vim.keymap.set("n", "<leader>za", "<cmd>Telekasten show_tags<CR>")
+vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<CR>")
+vim.keymap.set("n", "<leader>zB", "<cmd>Telekasten find_friends<CR>")
+
+
+vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<CR>")
+vim.keymap.set("n", "<leader>zD", "<cmd>Telekasten find_daily_notes<CR>")
+vim.keymap.set("n", "<leader>zw", "<cmd>Telekasten goto_thisweek<CR>")
+vim.keymap.set("n", "<leader>zW", "<cmd>Telekasten find_weekly_notes<CR>")
+
+vim.keymap.set("n", "<leader>zi", "<cmd>Telekasten insert_link<CR>")
+vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
+
+vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
+vim.keymap.set("n", "<leader>zy", "<cmd>Telekasten yank_notelink<CR>")
+vim.keymap.set("n", "<leader>zt", "<cmd>Telekasten toggle_todo<CR>")

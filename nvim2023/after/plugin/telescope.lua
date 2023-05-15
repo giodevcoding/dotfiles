@@ -7,10 +7,24 @@ end, {})
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>pe', builtin.diagnostics, {})
+
 
 local telescope = require("telescope")
 
 telescope.setup({
+    pickers = {
+        buffers = {
+            mappings = {
+                n = {
+                    ['d'] = require('telescope.actions').delete_buffer
+                },
+                i = {
+                    ['<A-d>'] = require('telescope.actions').delete_buffer
+                }
+            }
+        }
+    },
     extensions = {
         file_browser = {
             hijack_netrw = true,

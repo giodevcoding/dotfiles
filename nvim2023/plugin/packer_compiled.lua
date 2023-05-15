@@ -196,6 +196,16 @@ _G.packer_plugins = {
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["telekasten.nvim"] = {
+    loaded = true,
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/telekasten.nvim",
+    url = "https://github.com/renerocksai/telekasten.nvim"
+  },
+  ["telescope-bibtex.nvim"] = {
+    loaded = true,
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/telescope-bibtex.nvim",
+    url = "https://github.com/nvim-telescope/telescope-bibtex.nvim"
+  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
