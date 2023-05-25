@@ -92,6 +92,11 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'preservim/vim-markdown',
+        require = {'godlygeek/tabular'}
+    }
+
+    use {
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end
     }

@@ -23,13 +23,17 @@ telescope.setup({
                     ['<A-d>'] = require('telescope.actions').delete_buffer
                 }
             }
-        }
+        },
     },
     extensions = {
         file_browser = {
             hijack_netrw = true,
+            hidden = {
+                file_browser = true,
+                folder_browser = true
+            },
             mappings = {
-            }
+            },
         }
     }
 })

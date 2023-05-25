@@ -231,6 +231,11 @@ _G.packer_plugins = {
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/preservim/vim-markdown"
+  },
   ["vim-prettier"] = {
     loaded = true,
     path = "/home/giodev/.local/share/nvim/site/pack/packer/start/vim-prettier",
