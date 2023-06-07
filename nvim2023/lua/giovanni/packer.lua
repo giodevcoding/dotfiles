@@ -15,6 +15,11 @@ return require('packer').startup(function(use)
     }
 
     use {
+        "nvim-telescope/telescope-dap.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+
+    use {
         "EdenEast/nightfox.nvim",
     }
 
@@ -57,6 +62,27 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+
+    use 'mfussenegger/nvim-dap'
+    use {
+        'theHamsta/nvim-dap-virtual-text',
+        config = function() require('nvim-dap-virtual-text').setup({
+            commented = true
+        }) end
+    }
+    use 'mxsdev/nvim-dap-vscode-js'
+    use {
+        'microsoft/vscode-js-debug',
+        opt = true,
+        run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
+    }
+    use {
+        'leoluz/nvim-dap-go',
+        config = function() require('dap-go').setup() end
+    }
+    use 'simrat39/rust-tools.nvim'
+
+
 
     use 'nvim-tree/nvim-web-devicons'
 
