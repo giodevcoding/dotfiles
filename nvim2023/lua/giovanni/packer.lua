@@ -63,6 +63,11 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {
+        "L3MON4D3/LuaSnip",
+        run = "make install_jsregexp"
+    }
+
     use 'mfussenegger/nvim-dap'
     use {
         'theHamsta/nvim-dap-virtual-text',
