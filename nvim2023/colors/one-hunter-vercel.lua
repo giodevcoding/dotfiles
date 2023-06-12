@@ -97,7 +97,7 @@ highlight('Error', nil, ErrorRed, nil)
 highlight('StatusLine', MenuWhite, Black, nil)
 highlight('WildMenu', Black, MenuWhite, nil)
 highlight('Pmenu', Black, MenuWhite, nil)
-highlight('PmenuSel', MenuWhite, nil, nil)
+highlight('PmenuSel', MenuWhite, Black, nil)
 highlight('PmenuThumb', Black, MenuWhite, nil)
 
 highlight('CursorLine', VisualBGDarkBlue, nil, nil)
