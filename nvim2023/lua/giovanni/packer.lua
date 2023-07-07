@@ -68,19 +68,24 @@ return require('packer').startup(function(use)
         run = "make install_jsregexp"
     }
 
+    use 'mfussenegger/nvim-jdtls'
+
     use 'mfussenegger/nvim-dap'
     use {
         'theHamsta/nvim-dap-virtual-text',
-        config = function() require('nvim-dap-virtual-text').setup({
-            commented = true
-        }) end
+        config = function()
+            require('nvim-dap-virtual-text').setup({
+                commented = true
+            })
+        end
     }
     use 'mxsdev/nvim-dap-vscode-js'
-    use {
+    --[[ use {
         'microsoft/vscode-js-debug',
         opt = true,
-        run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
+        run = 'npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
     }
+    ]]--
     use {
         'leoluz/nvim-dap-go',
         config = function() require('dap-go').setup() end
@@ -119,12 +124,12 @@ return require('packer').startup(function(use)
     use 'nvim-telescope/telescope-media-files.nvim'
     use {
         'nvim-telescope/telescope-bibtex.nvim',
-        require = {'nvim-telescope/telescope.nvim'}
+        require = { 'nvim-telescope/telescope.nvim' }
     }
 
     use {
         'preservim/vim-markdown',
-        require = {'godlygeek/tabular'}
+        require = { 'godlygeek/tabular' }
     }
 
     use {
@@ -134,7 +139,6 @@ return require('packer').startup(function(use)
 
     use {
         'renerocksai/telekasten.nvim',
-        requires = {'nvim-telescope/telescope.nvim'}
+        requires = { 'nvim-telescope/telescope.nvim' }
     }
-
 end)

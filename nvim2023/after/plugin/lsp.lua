@@ -58,6 +58,8 @@ require('lspconfig').intelephense.setup({
     }
 })
 
+lsp.skip_server_setup({'jdtls'})
+
 lsp.setup()
 
 local cmp = require('cmp')

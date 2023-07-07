@@ -43,4 +43,5 @@ telescope.load_extension("media_files")
 telescope.load_extension("bibtex")
 telescope.load_extension("dap")
 
-vim.keymap.set("n", "<leader>pv", "<cmd>Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>pt", "<cmd>Telescope file_browser<CR>")
+vim.keymap.set("n", "<leader>pv", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
