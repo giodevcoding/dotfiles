@@ -60,7 +60,7 @@ link('Label', 'Conditional')
 link('TSLabel', 'Conditional')
 
 highlight('@operator', nil, RegularWhite, 'bold')
-highlight('Operator', nil, FunctionBlue, nil)
+highlight('Operator', nil, RegularWhite, nil)
 link('TSOperator', 'Operator')
 
 highlight('Keyword', nil, KeywordPink, 'bold')
@@ -68,7 +68,9 @@ link('Exception', 'Keyword')
 
 highlight('@type', nil, YellowOrange, nil)
 highlight('@type.builtin', nil, KeywordPink, nil)
+highlight('@type.qualifier', nil, KeywordPink, 'bold')
 highlight('@constant.builtin', nil, KeywordPink, nil)
+highlight('@boolean', nil, KeywordPink, nil)
 link('Type', '@type')
 link('StorageClass', 'Type')
 link('Structure', 'Type')
