@@ -5,7 +5,6 @@ local term = require("harpoon.term")
 vim.keymap.set("n", "<leader>ha", mark.add_file)
 vim.keymap.set("n", "<leader>he", ui.toggle_quick_menu)
 
-
 vim.keymap.set("n", "<leader>hh", function() ui.nav_prev() end)
 vim.keymap.set("n", "<leader>hl", function() ui.nav_next() end)
 vim.keymap.set("n", "<leader>h1", function() ui.nav_file(1) end)
@@ -19,3 +18,7 @@ vim.keymap.set("n", "<leader>h8", function() ui.nav_file(8) end)
 vim.keymap.set("n", "<leader>h9", function() ui.nav_file(9) end)
 vim.keymap.set("n", "<leader>h0", function() ui.nav_file(10) end)
 vim.keymap.set("n", "<leader>ht", function() term.gotoTerminal(1) end)
+
+require("harpoon").setup({
+    mark_branch = true
+})
