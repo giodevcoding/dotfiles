@@ -5,7 +5,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.1',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -24,11 +25,11 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-treesitter/nvim-treesitter',
-        { run = ':TSUpdate' }
+        "nvim-treesitter/nvim-treesitter",
+        { run = ":TSUpdate" }
     }
 
-    use 'theprimeagen/harpoon'
+    use "theprimeagen/harpoon"
 
     use 'mbbill/undotree'
 
@@ -85,27 +86,26 @@ return require('packer').startup(function(use)
         opt = true,
         run = 'npm ci --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out'
     }
-    ]]--
+    ]]
+    --
     use {
         'leoluz/nvim-dap-go',
         config = function() require('dap-go').setup() end
     }
     use 'simrat39/rust-tools.nvim'
 
-
-
     use 'nvim-tree/nvim-web-devicons'
+
+    use {
+        'folke/trouble.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {}
+    }
 
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true },
         config = function() require('lualine').setup() end
-    }
-
-    use {
-        'romgrk/barbar.nvim',
-        requires = 'nvim-tree/nvim-web-devicons',
-        disable = true
     }
 
     use 'prettier/vim-prettier'
