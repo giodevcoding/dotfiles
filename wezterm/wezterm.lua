@@ -47,6 +47,7 @@ M = {
             action = wezterm.action.ToggleFullScreen,
         },
     },
+    show_update_window = true,
 }
 
 

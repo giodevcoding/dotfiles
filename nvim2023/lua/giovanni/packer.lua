@@ -108,7 +108,8 @@ return require('packer').startup(function(use)
         config = function() require('lualine').setup() end
     }
 
-    use 'prettier/vim-prettier'
+    use "jose-elias-alvarez/null-ls.nvim"
+    use  "MunifTanjim/prettier.nvim"
 
     use 'mattn/emmet-vim'
 

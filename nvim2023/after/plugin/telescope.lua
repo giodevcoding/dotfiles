@@ -13,6 +13,9 @@ vim.keymap.set('n', '<leader>pe', builtin.diagnostics, {})
 local telescope = require("telescope")
 
 telescope.setup({
+    defaults = {
+        path_display={ "smart" }
+    },
     pickers = {
         buffers = {
             mappings = {
