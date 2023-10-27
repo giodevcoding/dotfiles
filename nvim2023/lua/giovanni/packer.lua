@@ -44,6 +44,11 @@ return require('packer').startup(function(use)
             {
                 -- Optional
                 'williamboman/mason.nvim',
+                config = function ()
+                    requre("mason").setup({
+                        log_level = vim.log.levels.DEBUG
+                    })
+                end,
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
                 end,

@@ -4,6 +4,13 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.prettierd,
+        --[[
+        null_ls.builtins.diagnostics.eslint.with {
+            condition = function(utils)
+                return not utils.has_file '.pnp.cjs'
+            end
+        }
+        ]]--
     }
 })
 

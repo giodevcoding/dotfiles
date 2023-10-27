@@ -39,7 +39,7 @@ end
 
 local config = {
     cmd = {
-        home .. "/.sdkman/candidates/java/17.0.7-ms/bin/java", -- or '/path/to/java17_or_newer/bin/java'
+        home .. "/.asdf/installs/java/corretto-17.0.4.9.1/bin/java", -- or '/path/to/java17_or_newer/bin/java'
         -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -53,6 +53,8 @@ local config = {
         "java.base/java.util=ALL-UNNAMED",
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
+        "-javaagent:/opt/lombok/lombok.jar",
+        "-Xbootclasspath/a:/opt/lombok/lombok.jar",
         -- 💀
         "-jar",
         jdtls_path .. "plugins/org.eclipse.equinox.launcher_" .. equinox_version .. ".jar",

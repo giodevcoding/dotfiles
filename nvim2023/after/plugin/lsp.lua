@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
 
 lsp.preset('recommended')
 
@@ -36,7 +37,7 @@ lsp.on_attach(function(client, bufnr)
     --
 end)
 
-require('lspconfig').intelephense.setup({
+lspconfig.intelephense.setup({
     settings = {
         intelephense = {
             files = {
@@ -58,7 +59,24 @@ require('lspconfig').intelephense.setup({
     }
 })
 
-lsp.skip_server_setup({'jdtls'})
+lspconfig.solargraph.setup({
+    filetypes = { "ruby", "rakefile" },
+    root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
+    settings = {
+        solargraph = {
+            autoformat = false,
+            formatting = true,
+            completion = true,
+            diagnostic = true,
+            folding = true,
+            references = true,
+            rename = true,
+            symbols = true
+        }
+    }
+})
+
+lsp.skip_server_setup({ 'jdtls' })
 
 lsp.setup()
 
