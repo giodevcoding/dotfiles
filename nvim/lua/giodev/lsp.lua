@@ -1,7 +1,9 @@
 local lsp = require "lspconfig"
 local coq = require "coq"
 
--- VUE (VOLAR)
+lsp.tsserver.setup(coq.lsp_ensure_capabilities({})); 
+
+--[[ VUE (VOLAR)
 lsp.volar.setup(coq.lsp_ensure_capabilities({
     filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
     init_options = {
@@ -10,7 +12,7 @@ lsp.volar.setup(coq.lsp_ensure_capabilities({
         },
     }
 }))
-
+]]--
 
 -- ESLint
 -- DISABLED FOR NOW BECAUSE NO IDEA HOW TO FIX THE INDENT MESSAGES
