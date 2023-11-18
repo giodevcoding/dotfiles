@@ -1,4 +1,5 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
 
 lsp.preset('recommended')
 
@@ -57,6 +58,12 @@ require('lspconfig').intelephense.setup({
         }
     }
 })
+
+lspconfig.gdscript.setup({
+    cmd = { 'ncat', 'localhost', '6005' },
+    root_dir = function() return vim.fn.getcwd() end
+})
+
 
 lsp.skip_server_setup({'jdtls'})
 
