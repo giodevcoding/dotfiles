@@ -78,6 +78,11 @@ lspconfig.solargraph.setup({
 
 lsp.skip_server_setup({ 'jdtls' })
 
+lspconfig.gdscript.setup({
+    cmd = { 'ncat', 'localhost', '6005' },
+    root_dir = function() return vim.fn.getcwd() end
+})
+
 lsp.setup()
 
 local cmp = require('cmp')
