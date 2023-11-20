@@ -32,6 +32,8 @@ vim.keymap.set("n", "<leader>w", "<C-w>")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
 
+vim.keymap.set("n", "<leader>l", "<cmd>set wrap!<CR><cmd>set linebreak!<CR>")
+
 -- Telekasten
 vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
 
