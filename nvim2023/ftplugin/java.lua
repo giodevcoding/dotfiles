@@ -1,3 +1,4 @@
+local is_mac = require("giovanni.functions").is_mac
 local status_ok, jdtls = pcall(require, "jdtls");
 if not status_ok then
     return
@@ -37,9 +38,14 @@ function on_attach(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end
 
+local java_location = "/.sdkman/candidates/java/17.0.7-ms/bin/java"
+if (is_mac()) then
+    java_location = "/.asdf/installs/java/corretto-17.0.4.9.1/bin/java"
+end
+
 local config = {
     cmd = {
-        home .. "/.asdf/installs/java/corretto-17.0.4.9.1/bin/java", -- or '/path/to/java17_or_newer/bin/java'
+        home .. java_location, -- or '/path/to/java17_or_newer/bin/java'
         -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",

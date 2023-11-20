@@ -51,7 +51,6 @@ M = {
 }
 
 
-
 local function exists(file)
     local ok, err, code = os.rename(file, file)
     if not ok then
@@ -73,4 +72,4 @@ if (exists("C:\\Windows")) then
     M.default_prog = { 'pwsh-preview' }
 end
 
-return M 
+return M

@@ -1,20 +1,10 @@
 local telekasten = require("telekasten")
+local is_windows = require("giovanni.functions").is_windows
 
 local home = vim.fn.expand("~/zk")
 
-local function exists(file)
-    local ok, err, code = os.rename(file, file)
-    if not ok then
-        if code == 13 then
-            return true
-        end
-    end
-    return ok, err
-end
-
-
 --Windows
-if not (exists("C:\\Windows")) then
+if not (is_windows()) then
     telekasten.setup({
         home = home,
         dailies = home .. "/journal/daily",

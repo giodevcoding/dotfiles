@@ -1,5 +1,6 @@
 local lsp = require('lsp-zero')
 local lspconfig = require('lspconfig')
+local is_windows = require("giovanni.functions").is_windows
 
 lsp.preset('recommended')
 
@@ -78,8 +79,14 @@ lspconfig.solargraph.setup({
 
 lsp.skip_server_setup({ 'jdtls' })
 
+local nc_command = 'nc'
+
+if (is_windows()) then
+    nc_command = 'ncat'
+end
+
 lspconfig.gdscript.setup({
-    cmd = { 'ncat', 'localhost', '6005' },
+    cmd = { nc_command, 'localhost', '6005' },
     root_dir = function() return vim.fn.getcwd() end
 })
 
