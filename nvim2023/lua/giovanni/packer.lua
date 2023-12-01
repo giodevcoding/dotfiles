@@ -103,9 +103,18 @@ return require('packer').startup(function(use)
 
     use {
         'folke/trouble.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = {}
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        config = {}
     }
+
+    use {
+      "folke/todo-comments.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function ()
+            require("todo-comments").setup()
+      end
+  }
+
 
     use {
         'nvim-lualine/lualine.nvim',
