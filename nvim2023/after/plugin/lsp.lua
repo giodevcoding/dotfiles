@@ -90,6 +90,8 @@ lspconfig.gdscript.setup({
     root_dir = function() return vim.fn.getcwd() end
 })
 
+lspconfig.dartls.setup({})
+
 lsp.setup()
 
 local cmp = require('cmp')
