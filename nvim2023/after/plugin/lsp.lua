@@ -90,7 +90,8 @@ lspconfig.gdscript.setup({
     root_dir = function() return vim.fn.getcwd() end
 })
 
-lspconfig.dartls.setup({})
+-- Not needed due to using flutter-tools.nvim 
+-- lspconfig.dartls.setup({})
 
 lsp.setup()
 

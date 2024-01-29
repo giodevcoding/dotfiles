@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
             {
                 -- Optional
                 'williamboman/mason.nvim',
-                config = function ()
+                config = function()
                     require("mason").setup({
                         log_level = vim.log.levels.DEBUG
                     })
@@ -108,12 +108,12 @@ return require('packer').startup(function(use)
     }
 
     use {
-      "folke/todo-comments.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
-      config = function ()
+        "folke/todo-comments.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
             require("todo-comments").setup()
-      end
-  }
+        end
+    }
 
 
     use {
@@ -123,7 +123,7 @@ return require('packer').startup(function(use)
     }
 
     use "jose-elias-alvarez/null-ls.nvim"
-    use  "MunifTanjim/prettier.nvim"
+    use "MunifTanjim/prettier.nvim"
 
     use 'mattn/emmet-vim'
 
@@ -156,4 +156,14 @@ return require('packer').startup(function(use)
         'renerocksai/telekasten.nvim',
         requires = { 'nvim-telescope/telescope.nvim' }
     }
+
+    use {
+        'akinsho/flutter-tools.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            -- 'stevearc/dressing.nvim', -- optional for vim.ui.select NOTE: It's neat but I like the more raw look I think
+        },
+        config = function() require("flutter-tools").setup{} end
+    }
+
 end)
