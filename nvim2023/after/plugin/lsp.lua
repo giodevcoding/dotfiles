@@ -1,6 +1,7 @@
 local lsp = require('lsp-zero')
 local lspconfig = require('lspconfig')
 local is_windows = require("giovanni.functions").is_windows
+local is_mac = require("giovanni.functions").is_mac
 
 lsp.preset('recommended')
 
@@ -90,7 +91,12 @@ lspconfig.gdscript.setup({
     root_dir = function() return vim.fn.getcwd() end
 })
 
--- Not needed due to using flutter-tools.nvim 
+lspconfig.sourcekit.setup {
+    cmd = { '/Library/Developer/CommandLineTools/usr/bin/sourcekit-lsp' },
+    filetypes = { "swift", "c", "cpp", "objective-c", "objective-cpp", "objcpp", "objc" },
+}
+
+-- Not needed due to using flutter-tools.nvim
 -- lspconfig.dartls.setup({})
 
 lsp.setup()

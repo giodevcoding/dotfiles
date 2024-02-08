@@ -6,7 +6,13 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.api.nvim_create_autocmd("FileType", { pattern = {"javascript", "javascriptreact", "json", "vue", "html", "typescriptreact", "typescript"}, command = [[ setlocal tabstop=2 softtabstop=2 shiftwidth=2 ]] })
+vim.api.nvim_create_autocmd("FileType",
+    {
+        pattern = { "javascript", "javascriptreact", "json", "vue", "html", "typescriptreact", "typescript" },
+        command =
+        [[ setlocal tabstop=2 softtabstop=2 shiftwidth=2 ]]
+    })
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = { "*.mm" }, command = [[set filetype=objective-cpp]] })
 
 vim.opt.autoindent = false;
 vim.opt.smartindent = true
