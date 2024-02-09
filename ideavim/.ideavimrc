@@ -1,0 +1,43 @@
+let mapleader = " "
+
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '<-2<CR>gv=gv
+
+nmap J mzJ`z
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
+nmap n nzzzv
+nmap N Nzzzv
+
+xmap <leader>p \dp")
+
+nmap <leader>y \"+y
+vmap <leader>y \"+y
+nmap <leader>Y \"+Y
+
+nmap <leader>d \"_d
+vmap <leader>d \"_d
+
+nmap Q <nop>
+
+nmap <leader>w <C-w>
+
+vmap > >gv
+vmap < <gv
+
+nmap <leader>pr <Action>(ReformatCode)
+nmap <leader>pf <Action>(GotoFile)
+nmap <leader>pg <Action>(TextSearchAction)
+
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gD <Action>(GotoImplementation)
+nmap <leader>vk <Action>(QuickJavaDoc)
+nmap <leader>vs <Action>(GotoSymbol)
+nmap <leader>ve <Action>(ShowErrorDescription)
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap <leader>va <Action>(ShowIntentionActions)
+nmap <leader>vrr <Action>(FindUsages)
+nmap <leader>vrn <Action>(RenameElement)
+nmap <leader>vrn <Action>(RenameElement)
+nmap <leader>ht <Action>(ActivateTerminalToolWindow)
