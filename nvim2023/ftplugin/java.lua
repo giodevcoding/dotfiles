@@ -7,7 +7,7 @@ end
 local home = vim.env.HOME
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls/"
 --local equinox_version = "1.6.500.v20230622-2056"
-local equinox_version = "1.6.500.v20230717-2134"
+local equinox_version = "1.6.700.v20231214-2017"
 
 WORKSPACE_PATH = home .. "/workspace/"
 if vim.fn.has("mac") == 1 then
@@ -38,10 +38,7 @@ function on_attach(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end
 
-local java_location = "/.sdkman/candidates/java/17.0.7-ms/bin/java"
-if (is_mac()) then
-    java_location = "/.asdf/installs/java/corretto-17.0.4.9.1/bin/java"
-end
+local java_location = "/.asdf/shims/java"
 
 local config = {
     cmd = {
