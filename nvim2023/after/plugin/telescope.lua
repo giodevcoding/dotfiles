@@ -27,6 +27,12 @@ telescope.setup({
                 }
             }
         },
+        find_files = {
+            hidden = true
+        },
+        live_grep = {
+            hidden = true
+        }
     },
     extensions = {
         file_browser = {
