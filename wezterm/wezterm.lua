@@ -5,8 +5,8 @@ math.randomseed(os.time())
 bg_img_num = math.random(1, 11)
 
 M = {
---    default_prog = { 'wsl' },
-    font = wezterm.font 'FiraCode Nerd Font Mono',
+    --    default_prog = { 'wsl' },
+    font = wezterm.font_with_fallback { 'Cascadia Code', 'FiraCode Nerd Font Mono' },
     font_size = 11.0,
     color_scheme = "Dracula+",
     colors = {
@@ -19,13 +19,13 @@ M = {
     hide_tab_bar_if_only_one_tab = true,
     --bg
     background = {
-       {
+        {
             source = {
                 File = (wezterm.home_dir .. "/.config/wezterm/bgcolor.png")
-            }, 
+            },
             opacity = 1,
         },
-        { 
+        {
             source = {
                 File = (wezterm.home_dir .. "/.config/wezterm/wezbgs/" .. bg_img_num .. ".png")
             },

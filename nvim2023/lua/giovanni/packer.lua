@@ -142,10 +142,11 @@ return require('packer').startup(function(use)
         require = { 'nvim-telescope/telescope.nvim' }
     }
 
-    use {
+    --[[use {
         'preservim/vim-markdown',
         require = { 'godlygeek/tabular' }
     }
+    ]]--
 
     use {
         "iamcco/markdown-preview.nvim",
@@ -161,9 +162,7 @@ return require('packer').startup(function(use)
         'akinsho/flutter-tools.nvim',
         requires = {
             'nvim-lua/plenary.nvim',
-            -- 'stevearc/dressing.nvim', -- optional for vim.ui.select NOTE: It's neat but I like the more raw look I think
         },
-        config = function() require("flutter-tools").setup{} end
+        config = function() require("flutter-tools").setup {} end
     }
-
 end)

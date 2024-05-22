@@ -28,6 +28,10 @@ local LineNumberGrey = '#454d54'
 local AlmostBlack = '#020202'
 local MiscGrey = '#75797c'
 local LighterPurple = '#bf98ff'
+local DarkGreen = '#19450c'
+local DarkRed = '#630101'
+local LessDarkRed='#450101'
+local DarkBlue = '#01017a'
 
 highlight('Normal', Black, MenuWhite, nil)
 highlight('Visual', VisualBGDarkBlue, nil, nil)
@@ -109,3 +113,8 @@ highlight('LineNr', nil, LineNumberGrey, nil)
 highlight('TabLine', AlmostBlack, MiscGrey, nil)
 highlight('TabLineFill', AlmostBlack, MiscGrey, nil)
 
+
+highlight('diffAdd', DarkGreen, nil, nil)
+highlight('diffChange', DarkBlue, nil, nil)
+highlight('diffText', DarkBlue, nil, nil)
+highlight('diffDelete', DarkRed, LessDarkRed, 'underline')

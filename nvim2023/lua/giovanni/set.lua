@@ -8,7 +8,7 @@ vim.opt.expandtab = true
 
 vim.api.nvim_create_autocmd("FileType",
     {
-        pattern = { "javascript", "javascriptreact", "json", "vue", "html", "typescriptreact", "typescript" },
+        pattern = { "javascript", "javascriptreact", "json", "vue", "html", "typescriptreact", "typescript", "dart", "flutter" },
         command =
         [[ setlocal tabstop=2 softtabstop=2 shiftwidth=2 ]]
     })
