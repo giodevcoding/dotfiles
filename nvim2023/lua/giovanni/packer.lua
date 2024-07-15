@@ -165,4 +165,12 @@ return require('packer').startup(function(use)
         },
         config = function() require("flutter-tools").setup {} end
     }
+
+    use {
+        'weirongxu/plantuml-previewer.vim',
+        requires = {
+            'tyru/open-browser.vim',
+            'aklt/plantuml-syntax'
+        }
+    }
 end)
