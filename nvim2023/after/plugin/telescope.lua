@@ -55,6 +55,9 @@ telescope.setup({
             },
             mappings = {
             },
+        },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {}
         }
     }
 })
@@ -63,6 +66,7 @@ telescope.load_extension("file_browser")
 telescope.load_extension("media_files")
 telescope.load_extension("bibtex")
 telescope.load_extension("dap")
+telescope.load_extension("ui-select")
 
 vim.keymap.set("n", "<leader>pt", "<cmd>Telescope file_browser<CR>")
 vim.keymap.set("n", "<leader>pv", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
