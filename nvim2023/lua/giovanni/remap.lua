@@ -57,3 +57,6 @@ vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
 vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
 vim.keymap.set("n", "<leader>zy", "<cmd>Telekasten yank_notelink<CR>")
 vim.keymap.set("n", "<leader>zt", "<cmd>Telekasten toggle_todo<CR>")
+
+vim.keymap.set("v", "<leader>//", "<C-v>^I//<esc>")
+vim.keymap.set("v", "<leader>/d", "<cmd>'<,'>s/\\/\\//<CR><esc>")

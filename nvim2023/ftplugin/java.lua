@@ -6,12 +6,18 @@ end
 
 local home = vim.env.HOME
 local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls/"
---local equinox_version = "1.6.500.v20230622-2056"
-local equinox_version = "1.6.700.v20231214-2017"
+
+local ls_lines = {}
+for line in io.popen("ls -pa " .. jdtls_path .. "plugins | grep org.eclipse.equinox.launcher_"):lines() do
+    print(line)
+    table.insert(ls_lines, line)
+end
+
+local equinox_path = jdtls_path .. "plugins/" .. ls_lines[1]
 
 WORKSPACE_PATH = home .. "/workspace/"
 if vim.fn.has("mac") == 1 then
-    OS_NAME = "mac"
+    OS_NAME = "mac_arm"
 elseif vim.fn.has("unix") == 1 then
     OS_NAME = "linux"
 elseif vim.fn.has("win32") == 1 then
@@ -60,7 +66,7 @@ local config = {
         "-Xbootclasspath/a:/opt/lombok/lombok.jar",
         -- 💀
         "-jar",
-        jdtls_path .. "plugins/org.eclipse.equinox.launcher_" .. equinox_version .. ".jar",
+        equinox_path,
         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
         -- Must point to the                                                     Change this to
         -- eclipse.jdt.ls installation                                           the actual version
@@ -79,7 +85,7 @@ local config = {
 
 local keymap = vim.keymap.set
 
-keymap("n", "<leader>vo", ":lua require'jdtls'.organize_imports()<cr>", { silent = true })
+keymap("n", "<leader>vo", jdtls.organize_imports, { silent = true })
 keymap("n", "<leader>vxv", ":lua require'jdtls'.extract_variable()<cr>", { silent = true })
 keymap("v", "<leader>vxv", "<Esc>:lua require'jdtls'.extract_variable(true)<cr>", { silent = true })
 keymap("n", "<leader>vxc", ":lua require'jdtls'.extract_constant()<cr>", { silent = true })

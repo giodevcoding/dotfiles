@@ -24,8 +24,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "<leader>vq", vim.cmd.LspRestart, opts)
-    vim.keymap.set("n", "<leader>vo", function () vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}) end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
     --[[ Primeagens bindings
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -37,8 +37,11 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-	]]
-    --
+	]]--
+
+    if (client.name == "tsserver") then
+        vim.keymap.set("n", "<leader>vo", function () vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}) end, opts)
+    end
 end)
 
 lspconfig.intelephense.setup({

@@ -40,6 +40,7 @@ highlight('Comment', nil, CommentGray, nil)
 link('NonText', 'Comment')
 
 highlight('Constant', nil, RegularWhite, 'italic')
+highlight('@constant.java', nil, LighterPurple, 'italic')
 link('@parameter', 'Constant')
 link('@field', 'Constant')
 
@@ -84,6 +85,8 @@ highlight('@tag', nil, LighterPurple, nil)
 highlight('@tag.delimiter', nil, RegularWhite, nil)
 highlight('@tag.attribute', nil, YellowOrange, 'italic')
 highlight('@constructor', nil, KeywordPink, nil)
+highlight('@lsp.type.annotation', nil, LighterPurple, 'italic')
+highlight('@attribute.java', nil, LighterPurple, 'italic')
 
 highlight('Punctuation', nil, LightYellowOrange, nil)
 link('@punctuation', 'Punctuation')

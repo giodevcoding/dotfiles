@@ -34,7 +34,11 @@ return require('packer').startup(function(use)
         { run = ":TSUpdate" }
     }
 
-    use "theprimeagen/harpoon"
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
 
     use 'mbbill/undotree'
 
@@ -137,6 +141,20 @@ return require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
 
+    use {
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require('nvim-ts-autotag').setup({
+                opts = {
+                    -- Defaults
+                    enable_close = true,          -- Auto close tags
+                    enable_rename = true,         -- Auto rename pairs of tags
+                    enable_close_on_slash = true -- Auto close on trailing </
+                },
+            })
+        end
+    }
+
     use("eandrju/cellular-automaton.nvim")
 
     -- Zettlekasten & Telekasten
@@ -151,7 +169,8 @@ return require('packer').startup(function(use)
         'preservim/vim-markdown',
         require = { 'godlygeek/tabular' }
     }
-    ]]--
+    ]]
+    --
 
     use {
         "iamcco/markdown-preview.nvim",
@@ -178,4 +197,6 @@ return require('packer').startup(function(use)
             'aklt/plantuml-syntax'
         }
     }
+
+    use "tpope/vim-surround"
 end)

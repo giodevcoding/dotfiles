@@ -64,10 +64,7 @@ local function exists(file)
 end
 
 -- Mac
-if (exists("/System/Library/")) then
-    M.font_size = 14.0
-    M.term = "screen-256color"
-end
+M.font_size = 15.0
 
 --Windows
 if (exists("C:\\Windows")) then

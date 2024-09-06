@@ -44,3 +44,6 @@ nmap <leader>vrn <Action>(RenameElement)
 nmap <leader>vrn <Action>(RenameElement)
 nmap <leader>fg <Action>(ActivateTerminalToolWindow)
 nmap <leader>vh <Action>(ToggleInlayHintsGloballyAction)
+
+set visualbell
+set noerrorbells
