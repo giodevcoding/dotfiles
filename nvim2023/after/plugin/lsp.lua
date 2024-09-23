@@ -6,7 +6,7 @@ local is_mac = require("giovanni.functions").is_mac
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-    'tsserver',
+    'ts_ls',
     'eslint',
     'lua_ls',
 })
