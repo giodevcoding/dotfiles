@@ -1,7 +1,7 @@
 local lsp = require('lsp-zero')
 local lspconfig = require('lspconfig')
+require('mason-lspconfig').setup()
 local is_windows = require("giovanni.functions").is_windows
-local is_mac = require("giovanni.functions").is_mac
 
 lsp.preset('recommended')
 
@@ -39,10 +39,22 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 	]]--
 
-    if (client.name == "tsserver") then
+    if (client.name == "tsserver" or client.name == 'ts_ls') then
         vim.keymap.set("n", "<leader>vo", function () vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}) end, opts)
     end
 end)
+
+lspconfig.volar.setup{
+  filetypes = {'vue', 'typescript', 'javascript'},
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+    typescript = {
+        tsdk = vim.fn.getcwd() .. "node_modules/typescript/lib"
+    }
+  },
+}
 
 lspconfig.intelephense.setup({
     settings = {
