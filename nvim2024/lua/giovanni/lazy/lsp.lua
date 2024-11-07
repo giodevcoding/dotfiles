@@ -73,14 +73,16 @@ return {
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
                             add_keymappings_on_attach(client, bufnr)
-                            vim.keymap.set("n", "<leader>vo", function () vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}) end, opts)
+                            vim.keymap.set("n", "<leader>vo",
+                                function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
+                                opts)
                         end
                     }
                 end
             }
         })
 
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
+        local luasnip = require('luasnip')
 
         cmp.setup({
             snippet = {
@@ -89,12 +91,42 @@ return {
                 end,
             },
             mapping = {
-                ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp_select }),
-                ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp_select }),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<CR>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        if luasnip.expandable() then
+                            luasnip.expand()
+                        else
+                            cmp.confirm({
+                                select = true,
+                            })
+                        end
+                    else
+                        fallback()
+                    end
+                end),
+
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.locally_jumpable(1) then
+                        luasnip.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
             },
             sources = cmp.config.sources({
-                { name = 'nvim_lsp'},
+                { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             }, {
                 { name = 'buffer' }

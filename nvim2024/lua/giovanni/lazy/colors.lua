@@ -1,7 +1,4 @@
-local default_theme = "oxocarbon"
-
 function ColorMyPencils(color)
-    color = color or default_theme
     vim.cmd.colorscheme(color)
 end
 
@@ -30,19 +27,23 @@ end)
 
 return {
     {
-        'navarasu/onedark.nvim',
-        config = function()
-            require('onedark').setup {
-                style = 'deep',
-                transparent = true,
-                lualine = {
-                    transparent = true
-                }
-            }
-            require('onedark').load()
-        end
+        'EdenEast/nightfox.nvim',
+        lazy = false,
+        priority = 1000,
     },
-    'nyoom-engineering/oxocarbon.nvim',
-    'Mofiqul/dracula.nvim',
-    'EdenEast/nightfox.nvim'
+    {
+        'eldritch-theme/eldritch.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function ()
+            vim.cmd[[colorscheme eldritch]]
+        end
+
+    },
+    {
+        'embark-theme/vim',
+        lazy = false,
+        priority = 1000,
+
+    },
 }
