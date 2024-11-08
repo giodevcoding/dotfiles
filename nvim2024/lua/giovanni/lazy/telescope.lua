@@ -16,6 +16,7 @@ return {
             vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
             vim.keymap.set('n', '<leader>pe', builtin.diagnostics, {})
+            vim.keymap.set('n', '<leader>cs', builtin.colorscheme, {})
 
             local telescope = require("telescope")
             local telescopeConfig = require("telescope.config")
