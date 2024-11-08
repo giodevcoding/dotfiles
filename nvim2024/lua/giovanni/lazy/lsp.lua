@@ -11,6 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "nvim-java/nvim-java",
     },
 
     config = function()
@@ -25,6 +26,7 @@ return {
             local opts = { buffer = bufnr, remap = false }
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
             vim.keymap.set("n", "<leader>vk", function() vim.lsp.buf.hover() end, opts)
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
             vim.keymap.set("n", "<leader>vs", function() vim.lsp.buf.workspace_symbol() end, opts)
             vim.keymap.set("n", "<leader>ve", function() vim.diagnostic.open_float() end, opts)
             vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next() end, opts)
@@ -75,10 +77,10 @@ return {
                             add_keymappings_on_attach(client, bufnr)
                             vim.keymap.set("n", "<leader>vo",
                                 function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
-                                opts)
+                                {})
                         end
                     }
-                end
+                end,
             }
         })
 
