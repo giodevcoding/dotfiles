@@ -27,7 +27,13 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = {"php"},
             },
-        }  
+        }
         vim.cmd([[TSUpdate]])
+
+        vim.filetype.add({
+            extension = {
+                gohtml = "gotmpl"
+            }
+        })
     end
 }

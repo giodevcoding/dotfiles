@@ -17,6 +17,7 @@ return {
             vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
             vim.keymap.set('n', '<leader>pe', builtin.diagnostics, {})
             vim.keymap.set('n', '<leader>cs', builtin.colorscheme, {})
+            vim.keymap.set('n', '<leader>pc', function() vim.cmd [[TodoTelescope]] end, {})
 
             local telescope = require("telescope")
             local telescopeConfig = require("telescope.config")
@@ -31,7 +32,7 @@ return {
 
             telescope.setup({
                 defaults = {
-                    path_display={ "smart" },
+                    path_display = { "smart" },
 
                     -- `hidden = true` is not supported in text grep commands.
                     vimgrep_arguments = vimgrep_arguments,

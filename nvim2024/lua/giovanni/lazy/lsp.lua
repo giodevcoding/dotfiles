@@ -22,6 +22,8 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
         local function add_keymappings_on_attach(client, bufnr)
             local opts = { buffer = bufnr, remap = false }
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -36,6 +38,7 @@ return {
             vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
             vim.keymap.set("n", "<leader>vq", vim.cmd.LspRestart, opts)
             vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+            vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)
         end
 
         require("fidget").setup({})
@@ -78,9 +81,53 @@ return {
                             vim.keymap.set("n", "<leader>vo",
                                 function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
                                 {})
+                        end,
+                        on_new_config = function(new_config, new_root_dir)
+                            new_config.init_options.plugins = {
+                                {
+                                    name = '@vue/typescript-plugin',
+                                    location = vim.fn.stdpath 'data' ..
+                                        '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                                    languages = { 'vue' },
+                                }
+                            }
                         end
                     }
                 end,
+                ["volar"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.volar.setup {
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            add_keymappings_on_attach(client, bufnr)
+                            vim.keymap.set("n", "<leader>vo",
+                                function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
+                                {})
+                        end,
+                        init_options = {
+                            vue = {
+                                hybridMode = false,
+                            }
+                        },
+                        settings = {
+                            vue = {
+                                complete = {
+                                    casing = {
+                                        tags = "kebab",
+                                        props = "kebab"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                end,
+                ["html"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.html.setup {
+                        capabilities = capabilities,
+                        filetypes = { "html", "templ", "gohtml", "gotmpl" },
+                    }
+                end
             }
         })
 
@@ -109,7 +156,9 @@ return {
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_next_item()
+                        cmp.select_next_item({
+                            behavior = cmp.SelectBehavior.Select
+                        })
                     elseif luasnip.locally_jumpable(1) then
                         luasnip.jump(1)
                     else
@@ -119,7 +168,9 @@ return {
 
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_prev_item()
+                        cmp.select_prev_item({
+                            behavior = cmp.SelectBehavior.Select
+                        })
                     elseif luasnip.locally_jumpable(-1) then
                         luasnip.jump(-1)
                     else
