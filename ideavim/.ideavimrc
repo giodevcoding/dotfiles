@@ -25,9 +25,13 @@ nmap <leader>w <C-w>
 vmap > >gv
 vmap < <gv
 
+
+map <leader>pm <action>(com.mituuz.fuzzier.FuzzyMover)
+map <leader>pf <action>(com.mituuz.fuzzier.FuzzierVCS)
+map <leader>pF <action>(com.mituuz.fuzzier.Fuzzier)
+map <leader>pg <action>(com.mituuz.fuzzier.FuzzyGrep)
+
 nmap <leader>pr <Action>(ReformatCode)
-nmap <leader>pf <Action>(GotoFile)
-nmap <leader>pg <Action>(TextSearchAction)
 nmap <leader>pv <Action>(ActivateProjectToolWindow)
 
 nmap <leader>gd <Action>(GotoDeclaration)

@@ -22,8 +22,6 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-
         local function add_keymappings_on_attach(client, bufnr)
             local opts = { buffer = bufnr, remap = false }
             vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)

@@ -1,38 +1,44 @@
---[[return {
-    'olimorris/codecompanion.nvim',
-    dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-treesitter/nvim-treesitter'
-    },
-    opts = {
-        strategies = {
-            chat = {
-                adapter = "r1_local"
-            },
-            inline = {
-                adapter = "r1_local"
-            }
-        },
-        adapters =  {
-            r1_local = function ()
-                return require("codecompanion.adapters").extend("ollama", {
-                    name = 'r1_local',
-                    schema = {
-                        model = {
-                            default = 'deepseek-r1'
-                        }
-                    }
-                })
-            end
-        }
-    }
-}]]--
 return {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
+    "olimorris/codecompanion.nvim",
+    opts = {},
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
-        vim.g.codeium_manual = true
-        vim.keymap.set('i', '<C-n>', function() return vim.fn['codeium#CycleOrComplete']() end, { expr = true, silent = true })
-        vim.keymap.set('n', '<leader>ai', function() return vim.fn['codeium#Chat']() end, { expr = true, silent = true })
+        local codecompanion = require("codecompanion")
+        codecompanion.setup({
+            adapters = {
+                qwen = function()
+                    return require("codecompanion.adapters").extend("ollama", {
+                        schema = {
+                            model = {
+                                default = "qwen2.5:14b",
+                            },
+                        },
+                    })
+                end,
+            },
+            strategies = {
+                chat = {
+                    adapter = "qwen",
+                },
+                inline = {
+                    adapter = "qwen"
+                }
+            },
+            display = {
+                action_palette = {
+                    provider = "telescope"
+                }
+            }
+        })
+        vim.keymap.set("n", "<leader>cc", function() vim.cmd [[ CodeCompanionChat Toggle ]] end)
+        vim.keymap.set("n", "<leader>cn", function() vim.cmd [[ CodeCompanionChat ]] end)
+        vim.keymap.set("n", "<leader>ci", ":CodeCompanion ")
+        vim.keymap.set("v", "<leader>ci", ":CodeCompanion ")
+        vim.keymap.set("n", "<leader>ca", function() vim.cmd [[ CodeCompanionActions ]] end)
+        vim.keymap.set("v", "<leader>ce", function() codecompanion.prompt("explain") end)
     end
 }
+

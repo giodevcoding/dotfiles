@@ -19,6 +19,9 @@ return {
                     vue = {
                         require("formatter.filetypes.vue").prettierd
                     },
+                    svelte = {
+                        require("formatter.filetypes.javascript").prettierd
+                    },
                 }
             }
             vim.keymap.set("n", "<leader>pr", vim.cmd.Format)

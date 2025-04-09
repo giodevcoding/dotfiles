@@ -30,14 +30,14 @@ return {
         'EdenEast/nightfox.nvim',
         lazy = false,
         priority = 1000,
+        config = function ()
+            vim.cmd[[colorscheme nightfox]]
+        end
     },
     {
         'eldritch-theme/eldritch.nvim',
         lazy = false,
         priority = 1000,
-        config = function ()
-            vim.cmd[[colorscheme eldritch]]
-        end
 
     },
     {
