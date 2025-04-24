@@ -49,5 +49,9 @@ nmap <leader>vrn <Action>(RenameElement)
 nmap <leader>fg <Action>(ActivateTerminalToolWindow)
 nmap <leader>vh <Action>(ToggleInlayHintsGloballyAction)
 
+imap <C-l> <Action>(copilot.requestCompletions)
+nmap <leader>ci <Action>(copilot.requestCompletions)
+nmap <leader>cc <Action>(copilot.chat.show)
+
 set visualbell
 set noerrorbells
