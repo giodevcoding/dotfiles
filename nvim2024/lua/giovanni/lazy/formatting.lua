@@ -22,9 +22,21 @@ return {
                     svelte = {
                         require("formatter.filetypes.javascript").prettierd
                     },
+                    java = {
+                        function()
+                            return {
+                                exe = 'mvn',
+                                args = {
+                                    'spotless:apply'
+                                },
+                                stdin = false,
+                                no_append = true,
+                            }
+                        end
+                    }
                 }
             }
-            vim.keymap.set("n", "<leader>pr", vim.cmd.Format)
+            vim.keymap.set("n", "<leader>pr", vim.cmd.FormatWrite)
         end
     },
     "nvim-tree/nvim-web-devicons",
