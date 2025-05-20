@@ -36,7 +36,15 @@ return {
                     }
                 }
             }
-            vim.keymap.set("n", "<leader>pr", vim.cmd.FormatWrite)
+            vim.keymap.set("n", "<leader>pr", vim.cmd.FormatLock)
+
+            vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "FormatterPost",
+                group = "FormatAutogroup",
+                --command = "wa!"
+            })
+
         end
     },
     "nvim-tree/nvim-web-devicons",

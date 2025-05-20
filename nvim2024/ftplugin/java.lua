@@ -1,4 +1,4 @@
---[[local jdtls = require("jdtls")
+local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 
 local functions = require("giovanni.functions")
@@ -39,9 +39,7 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local config = {
     cmd = {
 
-        -- 💀
-        'java', -- or '/path/to/java21_or_newer/bin/java'
-        -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+        'java',
 
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
@@ -92,4 +90,4 @@ local config = {
     }
 }
 
-jdtls.start_or_attach(config)]]--
+jdtls.start_or_attach(config)
