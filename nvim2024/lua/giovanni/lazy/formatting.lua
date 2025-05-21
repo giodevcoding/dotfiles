@@ -1,3 +1,29 @@
+local function saveAllJavaBuffers()
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(bufnr) then
+            local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+            if filetype == 'java' then
+                vim.api.nvim_buf_call(bufnr, function()
+                    vim.cmd('w')
+                end)
+            end
+        end
+    end
+end
+
+local function reloadAllJavaBuffers()
+    for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(bufnr) then
+            local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+            if filetype == 'java' then
+                vim.api.nvim_buf_call(bufnr, function()
+                    vim.cmd('e!')
+                end)
+            end
+        end
+    end
+end
+
 return {
     {
         "mhartington/formatter.nvim",
@@ -40,11 +66,20 @@ return {
 
             vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
             vim.api.nvim_create_autocmd("User", {
+                pattern = "FormatterPre",
+                group = "FormatAutogroup",
+                callback = function()
+                    saveAllJavaBuffers()
+                    return true
+                end
+            })
+            vim.api.nvim_create_autocmd("User", {
                 pattern = "FormatterPost",
                 group = "FormatAutogroup",
-                --command = "wa!"
+                callback = function()
+                    reloadAllJavaBuffers()
+                end
             })
-
         end
     },
     "nvim-tree/nvim-web-devicons",
