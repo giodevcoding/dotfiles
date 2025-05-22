@@ -105,8 +105,10 @@ local newPostMappingSnippet = s("newpostmapping", {
     i(1),
     t({"\")", "public ResponseEntity<"}),
     i(2),
-    t({">("}),
+    t(">"),
     i(3),
+    t("("),
+    i(4),
     t({") {", "    "}),
     i(0),
     t({"", "}"})

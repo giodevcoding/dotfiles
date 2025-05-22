@@ -3,7 +3,6 @@ local jdtls_setup = require("jdtls.setup")
 
 local functions = require("giovanni.functions")
 local home = os.getenv("HOME")
-local java_home = os.getenv("JAVA_HOME")
 
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = jdtls_setup.find_root(root_markers)
@@ -36,10 +35,12 @@ end
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
+local java_exec = vim.fn.glob('~/.asdf/installs/java/corretto-23.0.2.7.1/bin/java')
+local jdtls_jar = vim.fn.glob(path_to_jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar')
+
 local config = {
     cmd = {
-
-        'java',
+        java_exec,
 
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
@@ -54,7 +55,7 @@ local config = {
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
-        '-jar', vim.fn.glob(path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+        '-jar', jdtls_jar,
 
         '-configuration', path_to_config,
 
@@ -69,16 +70,6 @@ local config = {
             eclipse = {
                 downloadSources = true,
             },
-            configuration = {
-                updateBuildConfiguration = 'interactive',
-                runtimes = {
-                    {
-                        name = "JavaSE-21",
-                        path = java_home,
-                        default = true
-                    }
-                }
-            },
             maven = {
                 downloadSources = true
             },
@@ -87,7 +78,7 @@ local config = {
             },
         },
         extendedClientCapabilities = extendedClientCapabilities
-    }
+    },
 }
 
 jdtls.start_or_attach(config)

@@ -34,83 +34,81 @@ return {
                 'gopls',
                 'jdtls'
             },
-            handlers = {
-                function(server_name)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities,
-                        on_attach = add_keymappings_on_attach
-                    }
-                end,
-                ['jdtls'] = function() --[[Do nothing]] end,
-                ["lua_ls"] = function()
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        on_attach = add_keymappings_on_attach,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-                ["ts_ls"] = function()
-                    lspconfig.ts_ls.setup {
-                        capabilities = capabilities,
-                        on_attach = function(client, bufnr)
-                            add_keymappings_on_attach(client, bufnr)
-                            vim.keymap.set("n", "<leader>vo",
-                                function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
-                                {})
-                        end,
-                        on_new_config = function(new_config, new_root_dir)
-                            new_config.init_options.plugins = {
-                                {
-                                    name = '@vue/typescript-plugin',
-                                    location = vim.fn.stdpath 'data' ..
-                                        '/mason/packages/vue-language-server/node_modules/@vue/language-server',
-                                    languages = { 'vue' },
-                                }
-                            }
-                        end
-                    }
-                end,
-                ["volar"] = function()
-                    lspconfig.volar.setup {
-                        capabilities = capabilities,
-                        on_attach = function(client, bufnr)
-                            add_keymappings_on_attach(client, bufnr)
-                            vim.keymap.set("n", "<leader>vo",
-                                function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
-                                {})
-                        end,
-                        init_options = {
-                            vue = {
-                                hybridMode = false,
-                            }
-                        },
-                        settings = {
-                            vue = {
-                                complete = {
-                                    casing = {
-                                        tags = "kebab",
-                                        props = "kebab"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                end,
-                ["html"] = function()
-                    lspconfig.html.setup {
-                        capabilities = capabilities,
-                        filetypes = { "html", "templ", "gohtml", "gotmpl" },
-                    }
-                end
+            automatic_enable = {
+                exclude = {
+                    'jdtls',
+                    'lua_ls',
+                    'ts_ls',
+                    'volar',
+                    'html'
+                }
             }
         })
+
+        vim.lsp.config("*", {
+            capabilities = capabilities,
+            on_attach = add_keymappings_on_attach
+        })
+
+        lspconfig.lua_ls.setup {
+            capabilities = capabilities,
+            on_attach = add_keymappings_on_attach,
+            settings = {
+                Lua = {
+                    runtime = { version = "Lua 5.1" },
+                    diagnostics = {
+                        globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                    }
+                }
+            }
+        }
+        lspconfig.ts_ls.setup {
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                add_keymappings_on_attach(client, bufnr)
+                vim.keymap.set("n", "<leader>vo",
+                    function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
+                    {})
+            end,
+            on_new_config = function(new_config, new_root_dir)
+                new_config.init_options.plugins = {
+                    {
+                        name = '@vue/typescript-plugin',
+                        location = vim.fn.stdpath 'data' ..
+                            '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                        languages = { 'vue' },
+                    }
+                }
+            end
+        }
+        lspconfig.volar.setup {
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                add_keymappings_on_attach(client, bufnr)
+                vim.keymap.set("n", "<leader>vo",
+                    function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
+                    {})
+            end,
+            init_options = {
+                vue = {
+                    hybridMode = false,
+                }
+            },
+            settings = {
+                vue = {
+                    complete = {
+                        casing = {
+                            tags = "kebab",
+                            props = "kebab"
+                        }
+                    }
+                }
+            }
+        }
+        lspconfig.html.setup {
+            capabilities = capabilities,
+            filetypes = { "html", "templ", "gohtml", "gotmpl" },
+        }
 
         local luasnip = require('luasnip')
 
