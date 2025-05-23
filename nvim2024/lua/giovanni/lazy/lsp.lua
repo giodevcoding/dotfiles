@@ -62,6 +62,7 @@ return {
                 }
             }
         }
+
         lspconfig.ts_ls.setup {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
@@ -81,6 +82,7 @@ return {
                 }
             end
         }
+
         lspconfig.volar.setup {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
@@ -105,6 +107,7 @@ return {
                 }
             }
         }
+
         lspconfig.html.setup {
             capabilities = capabilities,
             filetypes = { "html", "templ", "gohtml", "gotmpl" },
