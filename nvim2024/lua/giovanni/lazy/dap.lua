@@ -1,5 +1,21 @@
 return {
-    "mfussenegger/nvim-dap",
+    {
+        "mfussenegger/nvim-dap",
+        config = function()
+            local dap = require('dap')
+
+            dap.configurations.java = {
+                {
+                    type = 'java',
+                    request = 'attach',
+                    name = 'Debug (Attach) - Remote',
+                    hostName = '127.0.0.1',
+                    port = 5005,
+                }
+            }
+
+        end
+    },
     {
         'theHamsta/nvim-dap-virtual-text',
         config = function()
@@ -8,8 +24,4 @@ return {
             })
         end
     },
-    --[[{
-        'leoluz/nvim-dap-go',
-        config = function() require('dap-go').setup() end
-    }]]--
 }
