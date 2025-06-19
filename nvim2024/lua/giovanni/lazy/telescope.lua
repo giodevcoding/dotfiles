@@ -32,7 +32,7 @@ return {
 
             telescope.setup({
                 defaults = {
-                    path_display = { "smart" },
+                    path_display = { "truncate" },
 
                     -- `hidden = true` is not supported in text grep commands.
                     vimgrep_arguments = vimgrep_arguments,

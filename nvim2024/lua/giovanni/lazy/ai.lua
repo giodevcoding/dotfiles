@@ -72,9 +72,6 @@ return {
                     action_palette = {
                         provider = "telescope"
                     },
-                    diff = {
-                        provider = "mini_diff"
-                    }
                 }
             })
             vim.keymap.set("n", "<leader>cc", function() vim.cmd [[ CodeCompanionChat Toggle ]] end)

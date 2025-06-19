@@ -15,30 +15,13 @@ local path_to_jdtls = path_to_mason_packages .. "/jdtls"
 
 local path_to_config = path_to_jdtls .. "/config_mac"
 
-local function get_lombok_path()
-    local lombok_dir = home .. '/.m2/repository/org/projectlombok/lombok/'
-    local lombok_versions = io.popen('ls -1 "' .. lombok_dir .. '" | sort -r')
-    if lombok_versions ~= nil then
-        local lb_i, lb_versions = 0, {}
-        for lb_version in lombok_versions:lines() do
-            lb_i = lb_i + 1
-            lb_versions[lb_i] = lb_version
-        end
-        lombok_versions:close()
-        if next(lb_versions) ~= nil then
-            return vim.fn.expand(string.format('%s%s/*.jar', lombok_dir, lb_versions[1]))
-        end
-    end
-    return ''
-end
-
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local java_exec = vim.fn.glob('~/.asdf/installs/java/corretto-23.0.2.7.1/bin/java')
 local jdtls_jar = vim.fn.glob(path_to_jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
-local config = {
+local jdtls_config = {
     cmd = {
         java_exec,
 
@@ -49,8 +32,7 @@ local config = {
         '-Dlog.level=ALL',
         '-Xmx1g',
 
-        '-javaagent:' .. get_lombok_path(),
-
+        '-javaagent:' .. home .. '/.local/share/nvim/mason/packages/lombok-nightly/lombok.jar',
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
@@ -79,6 +61,13 @@ local config = {
         },
         extendedClientCapabilities = extendedClientCapabilities
     },
+    init_options = {
+        bundles = {}
+    }
 }
 
-jdtls.start_or_attach(config)
+local spring_boot = require("spring_boot")
+
+vim.list_extend(jdtls_config.init_options.bundles, spring_boot.java_extensions())
+
+jdtls.start_or_attach(jdtls_config)

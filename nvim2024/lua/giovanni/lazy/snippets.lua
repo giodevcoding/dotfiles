@@ -6,6 +6,7 @@ return {
 
         config = function()
             require("giovanni.snippets.java_snippets")
+            require("giovanni.snippets.vue_snippets")
         end
     }
 }
