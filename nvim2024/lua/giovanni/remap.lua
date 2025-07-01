@@ -29,3 +29,14 @@ vim.keymap.set("n", "<leader>w", "<C-w>")
 
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
+
+local insert_uuid = function ()
+    local handle = io.popen("uuidgen | tr 'A-Z' 'a-z'")
+    if handle then
+        local uuid = handle:read("*a"):gsub("%s+$", "")
+        handle:close()
+        vim.api.nvim_put({ uuid }, 'c', true, true)
+    end
+end
+
+vim.keymap.set("n", "<leader>iu", insert_uuid, { desc = "Insert lowercase UUID", noremap = true, silent = true })
