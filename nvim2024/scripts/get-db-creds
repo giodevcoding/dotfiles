@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+DB_USERNAME=$1
+CONFIG_PROFILE=$2
+CLUSTER_NAME=$3
+
+DB_SECRET_ARN=$(aws --output json --profile $CONFIG_PROFILE secretsmanager list-secrets --filter Key="name",Values="db/${DB_USERNAME}/${CLUSTER_NAME}" 2>/dev/null | jq -r '.SecretList[].ARN')
+DB_PASSWORD=$(aws --output json --profile $CONFIG_PROFILE secretsmanager get-secret-value --secret-id $DB_SECRET_ARN 2>/dev/null | jq -r '.SecretString | fromjson | .password')
+
+echo $DB_PASSWORD
