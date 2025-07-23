@@ -25,7 +25,6 @@ local function urlencode(url)
   return url
 end
 
-
 return {
     dump = dump,
     char_to_hex = char_to_hex,

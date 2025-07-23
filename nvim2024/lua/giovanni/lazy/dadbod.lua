@@ -77,7 +77,8 @@ local function load_db_connections()
     local status, connections = pcall(load_connections_file)
     if not status then
         local err = connections -- value is error if status is false
-        vim.notify('Could not load DB connections! ' .. err, vim.log.levels.ERROR)
+        vim.notify('Could not load DB connections! ' .. err, vim.log.levels.WARN)
+        return
     end
 
     vim.g.dbs = get_dbs(connections)
