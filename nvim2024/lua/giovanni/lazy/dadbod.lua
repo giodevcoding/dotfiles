@@ -99,5 +99,6 @@ return {
     init = function()
         vim.g.db_ui_use_nerd_fonts = 1
         load_db_connections()
+        vim.keymap.set("n", "<leader>db", function() vim.cmd[[DBUIToggle]] end)
     end,
 }
