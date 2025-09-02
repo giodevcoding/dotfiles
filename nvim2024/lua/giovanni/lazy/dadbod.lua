@@ -40,11 +40,11 @@ local function inject_passwords(name, url)
     local new_url = url
     local urlencode = require("giovanni.utils").urlencode
 
+
     for env_var, aws_data in pairs(db_creds) do
         local full_env_var = '$' .. env_var
         if string.find(new_url, full_env_var) then
-            vim.notify("Getting passwords to replace " .. full_env_var .. " for connection: " .. name,
-                vim.log.levels.INFO)
+            vim.notify("Injecting password for " .. full_env_var)
             local db_password = require("giovanni.functions").get_db_creds(db_username, aws_data.profile,
                 aws_data.cluster)
             db_password = string.gsub(db_password, "\n", "")
@@ -99,6 +99,8 @@ return {
     init = function()
         vim.g.db_ui_use_nerd_fonts = 1
         load_db_connections()
-        vim.keymap.set("n", "<leader>db", function() vim.cmd[[DBUIToggle]] end)
+        vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { silent = true })
+        vim.keymap.set('n', '<leader>dd', ":%DB<CR>", { silent = true })
+        vim.keymap.set('x', '<leader>dd', "\"dy:DB <C-r>d<CR>", { silent = true })
     end,
 }
