@@ -40,19 +40,19 @@ local function inject_passwords(name, url)
     local new_url = url
     local urlencode = require("giovanni.utils").urlencode
 
-
     for env_var, aws_data in pairs(db_creds) do
         local full_env_var = '$' .. env_var
         if string.find(new_url, full_env_var) then
-            vim.notify("Injecting password for " .. full_env_var)
+            vim.notify("Fetching " .. full_env_var, vim.log.levels.INFO)
             local db_password = require("giovanni.functions").get_db_creds(db_username, aws_data.profile,
                 aws_data.cluster)
             db_password = string.gsub(db_password, "\n", "")
 
-            local encoded_password = urlencode(db_password)
-            new_url = string.gsub(new_url, full_env_var, encoded_password:gsub("%%", "%%%%"))
+            local encoded_password = urlencode(db_password):gsub("%%", "%%%%")
+            new_url = new_url:gsub(full_env_var, encoded_password)
         end
     end
+
 
     return new_url
 end
@@ -101,6 +101,6 @@ return {
         load_db_connections()
         vim.keymap.set("n", "<leader>db", ":DBUIToggle<CR>", { silent = true })
         vim.keymap.set('n', '<leader>dd', ":%DB<CR>", { silent = true })
-        vim.keymap.set('x', '<leader>dd', "\"dy:DB <C-r>d<CR>", { silent = true })
+        vim.keymap.set('x', '<leader>dd', "\"dy:DB <C-r>d;<CR>", { silent = true })
     end,
 }

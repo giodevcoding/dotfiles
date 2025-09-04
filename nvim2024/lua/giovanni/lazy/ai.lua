@@ -4,7 +4,7 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    enabled = false
+                    enabled = true
                 }
             })
             local suggestion = require("copilot.suggestion")
