@@ -1,7 +1,12 @@
 return {
     {
         "iamcco/markdown-preview.nvim",
-        build = function() vim.fn["mkdp#util#install"]() end
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
     },
     {
         'weirongxu/plantuml-previewer.vim',
