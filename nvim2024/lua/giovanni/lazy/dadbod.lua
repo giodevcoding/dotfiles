@@ -15,8 +15,11 @@ local db_creds = {
     }
 }
 
+local NO_PROJECT_ROOT = "No project root found."
+
 local function load_connections_file()
     local project_root = vim.fs.root(0, '.git')
+    if project_root == nil then return NO_PROJECT_ROOT end
     local connections_file_path = project_root .. '/dbui-connections.json'
 
     if not vim.uv.fs_stat(connections_file_path) then
@@ -75,9 +78,10 @@ end
 
 local function load_db_connections()
     local status, connections = pcall(load_connections_file)
+    if connections == NO_PROJECT_ROOT then return end
     if not status then
         local err = connections -- value is error if status is false
-        vim.notify('Could not load DB connections! ' .. err, vim.log.levels.WARN)
+        vim.notify('Could not load DB connections! ' .. err)
         return
     end
 

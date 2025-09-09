@@ -50,15 +50,17 @@ return {
             local codecompanion = require("codecompanion")
             codecompanion.setup({
                 adapters = {
-                    qwen = function()
-                        return require("codecompanion.adapters").extend("ollama", {
-                            schema = {
-                                model = {
-                                    default = "qwen2.5:14b",
+                    http = {
+                        qwen = function()
+                            return require("codecompanion.adapters").extend("ollama", {
+                                schema = {
+                                    model = {
+                                        default = "qwen2.5:14b",
+                                    },
                                 },
-                            },
-                        })
-                    end,
+                            })
+                        end,
+                    }
                 },
                 strategies = {
                     chat = {
