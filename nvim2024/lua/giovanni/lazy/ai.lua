@@ -4,10 +4,15 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    enabled = true
+                    auto_trigger = false
                 }
             })
+
             local suggestion = require("copilot.suggestion")
+            vim.keymap.set("n", "<leader>ct", function()
+                suggestion.toggle_auto_trigger()
+                vim.notify("copilot suggestion auto_trigger is: " .. tostring(vim.b.copilot_suggestion_auto_trigger), vim.log.levels.INFO)
+            end)
             vim.keymap.set("i", "<C-l>", function()
                 suggestion.accept()
             end)
