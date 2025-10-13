@@ -47,6 +47,12 @@ return {
                         function() vim.lsp.buf.execute_command({ command = "_typescript.organizeImports", arguments = { vim.fn.expand("%:p") } }) end,
                         {})
                 end,
+                filetypes = {
+                    "typescript",
+                    "typescriptreact",
+                    "javascript",
+                    "javascriptreact",
+                },
             })
 
             vim.lsp.config('vtsls', {
@@ -57,7 +63,7 @@ return {
                                 {
                                     name = '@vue/typescript-plugin',
                                     location = vim.fn.stdpath('data') ..
-                                    '/mason/packages/vue-language-server/node_modules/@vue/language-server',
+                                        '/mason/packages/vue-language-server/node_modules/@vue/language-server',
                                     languages = { 'vue' },
                                     configNamespace = 'typescript'
                                 }
@@ -216,5 +222,65 @@ return {
                 })
             })
         end
+    },
+    {
+        "schrieveslaach/sonarlint.nvim",
+        url = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "mason-org/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "lewis6991/gitsigns.nvim"
+        },
+        opts = {
+            server = {
+                cmd = {
+                    "sonarlint-language-server",
+                    -- Ensure that sonarlint-language-server uses stdio channel
+                    "-stdio",
+                    "-analyzers",
+                    -- paths to the analyzers you need, using those for python and java in this example
+                    vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+                    vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+                },
+                settings = {
+                    sonarlint = {
+                        connectedMode = {
+                            connections = {
+                                sonarqube = {
+                                    {
+                                        connectionId = "giovanni-neovim-sonarqube",
+                                        serverUrl =
+                                        "https://sonarqube-enterprise.developer-tooling-prod.ramseysolutions.net/",
+                                        disableNotifications = false,
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                before_init = function(params, config)
+                    local code_dir = os.getenv("HOME") .. "/code"
+                    local project_root_and_ids = {
+                        [code_dir .. "/ffp/ready-player-one-web-app"] =
+                        "ramsey-solutions:free-first-party:ready-player-one-web-app",
+                        [code_dir .. "/ffp/ready-player-one-web-app/backend"] =
+                        "ramsey-solutions:free-first-party:ready-player-one-web-app",
+                        [code_dir .. "/ffp/ready-player-one-web-app/frontend"] =
+                        "ramsey-solutions:free-first-party:ready-player-one-web-app",
+                        [code_dir .. "/ffp/ready-player-one-service"] =
+                        "ramsey-solutions:free-first-party:ready-player-one-service",
+                    }
+
+                    config.settings.sonarlint.connectedMode.project = {
+                        connectionId = "giovanni-neovim-sonarqube",
+                        projectKey = project_root_and_ids[params.rootPath]
+                    }
+                end,
+            },
+            filetypes = {
+                "java",
+            },
+        },
     }
 }
