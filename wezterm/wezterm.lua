@@ -30,7 +30,7 @@ M = {
     background = {
         {
             source = {
-                Color = '#245'
+                Color = '#324'
             },
             width = "100%",
             height = "100%",
@@ -40,9 +40,9 @@ M = {
             source = {
                 File = background_file
             },
-            opacity = 0.8,
+            opacity = 0.5,
             hsb = {
-                brightness = 0.1
+                brightness = 0.05
             }
         },
     },
@@ -59,6 +59,7 @@ M = {
         },
     },
     show_update_window = true,
+    window_decorations = "RESIZE"
 }
 
 
