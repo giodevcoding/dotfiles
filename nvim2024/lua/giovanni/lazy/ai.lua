@@ -5,7 +5,8 @@ return {
             require("copilot").setup({
                 suggestion = {
                     auto_trigger = false
-                }
+                },
+                copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.20.0/bin/node"
             })
 
             local suggestion = require("copilot.suggestion")
