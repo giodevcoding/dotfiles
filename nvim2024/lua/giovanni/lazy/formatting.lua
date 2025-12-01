@@ -2,7 +2,8 @@ local function saveAllJavaBuffers()
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(bufnr) then
             local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-            if filetype == 'java' then
+            local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
+            if filetype == 'java' and (buftype == '' or buftype == nil) then
                 vim.api.nvim_buf_call(bufnr, function()
                     vim.cmd('w')
                 end)
@@ -15,7 +16,8 @@ local function reloadAllJavaBuffers()
     for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(bufnr) then
             local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-            if filetype == 'java' then
+            local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
+            if filetype == 'java' and (buftype == '' or buftype == nil) then
                 vim.api.nvim_buf_call(bufnr, function()
                     vim.cmd('e!')
                 end)
