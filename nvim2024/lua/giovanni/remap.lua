@@ -38,5 +38,10 @@ local insert_uuid = function ()
         vim.api.nvim_put({ uuid }, 'c', true, true)
     end
 end
-
 vim.keymap.set("n", "<leader>iu", insert_uuid, { desc = "Insert lowercase UUID", noremap = true, silent = true })
+
+vim.keymap.set("t", "<C-w>h", "<C-\\><C-n><C-w>h", { noremap = true, silent = true })
+vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { noremap = true, silent = true })
+vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { noremap = true, silent = true })
+vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { noremap = true, silent = true })
+vim.keymap.set("t", "<C-w>c", "<C-\\><C-n><C-w>c", { noremap = true, silent = true })
