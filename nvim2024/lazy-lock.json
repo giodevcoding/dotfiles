@@ -1,4 +1,5 @@
 {
+  "99": { "branch": "master", "commit": "4b7c22a488f3e637b6d4c09dbc59865956aa396a" },
   "LuaSnip": { "branch": "master", "commit": "dae4f5aaa3574bd0c2b9dd20fb9542a02c10471c" },
   "cellular-automaton.nvim": { "branch": "main", "commit": "1606e9d5d04ff254023c3f3c62842d065708d6d3" },
   "claudecode.nvim": { "branch": "main", "commit": "aa9a5cebebdbfa449c1c5ff229ba5d98e66bafed" },
@@ -34,7 +35,6 @@
   "plantuml-syntax": { "branch": "master", "commit": "9d4900aa16674bf5bb8296a72b975317d573b547" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "presenting.nvim": { "branch": "main", "commit": "e78245995a09233e243bf48169b2f00dc76341f7" },
-  "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "sonarlint.nvim": { "branch": "main", "commit": "acd09b78969ddc965a7ddf59abb9d9eec5ecd94f" },
   "spring-boot.nvim": { "branch": "main", "commit": "affc5d16f1de9bbcbb260a31e74ee1037d4903a0" },
   "tabular": { "branch": "master", "commit": "12437cd1b53488e24936ec4b091c9324cafee311" },
