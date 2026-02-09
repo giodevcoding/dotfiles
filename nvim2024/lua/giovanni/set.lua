@@ -41,3 +41,15 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
+vim.filetype.add({
+  filename = {
+    ['Fastfile'] = 'ruby',
+    ['Appfile'] = 'ruby',
+    ['Matchfile'] = 'ruby',
+    ['Pluginfile'] = 'ruby',
+    ['Gymfile'] = 'ruby',
+    ['Scanfile'] = 'ruby',
+    ['Deliverfile'] = 'ruby',
+    ['Snapfile'] = 'ruby',
+  },
+})
