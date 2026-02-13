@@ -101,15 +101,13 @@ return {
     },
     {
         "coder/claudecode.nvim",
-        enabled = false,
         dependencies = { "folke/snacks.nvim" },
         config = true,
         opts = {
             terminal = {
-                provider = "native",
+                provider = "external",
                 provider_opts = {
                     external_terminal_cmd = function(cmd, env)
-                        print(utils.dump(env))
                         return "tmux split-window -h -l 30% -c " .. vim.fn.getcwd() .. ' ' .. cmd
                     end
                 }
