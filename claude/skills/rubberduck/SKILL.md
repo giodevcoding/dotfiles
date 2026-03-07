@@ -12,4 +12,4 @@ The goal is to work through ideas to find the best one, not just implement the f
 
 We may need to walk through these steps, or some of them, several times before landing on a solution/implementation.
 
-Only implement after we've discussed and I've explicity directed you to implement it. Otherwise, remain in discussino mode.
+Only implement after we've discussed and I've explicity directed you to implement it. Otherwise, remain in discussion mode.

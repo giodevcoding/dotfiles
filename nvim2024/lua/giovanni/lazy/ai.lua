@@ -1,4 +1,3 @@
-local utils = require("giovanni.utils")
 return {
     {
         "ThePrimeagen/99",
@@ -44,10 +43,6 @@ return {
                     custom_rules = {
                         "scratch/custom_rules/",
                     },
-
-                    --- What autocomplete do you use.  We currently only
-                    --- support cmp right now
-                    source = "cmp",
                 },
 
                 --- WARNING: if you change cwd then this is likely broken
@@ -61,15 +56,22 @@ return {
                 --- assuming that /foo is project root (based on cwd)
                 md_files = {
                     "CLAUDE.md",
+                    "AGENT.md",
+                    "AGENTS.md",
                 },
             })
 
             -- Create your own short cuts for the different types of actions
-            vim.keymap.set("n", "<leader>9f", function()
-                _99.fill_in_function()
+            vim.keymap.set("n", "<leader>9s", function()
+                _99.search()
             end)
-            vim.keymap.set("n", "<leader>9pf", function()
-                _99.fill_in_function_prompt()
+
+            vim.keymap.set("n", "<leader>9v", function()
+                _99.vibe()
+            end)
+
+            vim.keymap.set("n", "<leader>9o", function()
+                _99.open()
             end)
             -- take extra note that i have visual selection only in v mode
             -- technically whatever your last visual selection is, will be used
@@ -78,25 +80,22 @@ return {
             --
             -- likely ill add a mode check and assert on required visual mode
             -- so just prepare for it now
-            vim.keymap.set("v", "<leader>9f", function()
+            vim.keymap.set("v", "<leader>9v", function()
                 _99.visual()
             end)
-            vim.keymap.set("v", "<leader>9pf", function()
-                _99.visual_prompt()
+
+            vim.keymap.set("v", "<leader>9l", function()
+                _99.view_logs()
             end)
 
             --- if you have a request you dont want to make any changes, just cancel it
-            vim.keymap.set("v", "<leader>9x", function()
+            vim.keymap.set("n", "<leader>9x", function()
                 _99.stop_all_requests()
             end)
 
-            --- Example: Using rules + actions for custom behaviors
-            --- Create a rule file like ~/.rules/debug.md that defines custom behavior.
-            --- For instance, a "debug" rule could automatically add printf statements
-            --- throughout a function to help debug its execution flow.
-            -- vim.keymap.set("n", "<leader>9fd", function()
-            --     _99.fill_in_function()
-            -- end)
+            vim.keymap.set("n", "<leader>9m", function()
+                require("99.extensions.telescope").select_model()
+            end)
         end,
     },
     {
