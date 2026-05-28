@@ -45,3 +45,10 @@ vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { noremap = true, silent = tr
 vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { noremap = true, silent = true })
 vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { noremap = true, silent = true })
 vim.keymap.set("t", "<C-w>c", "<C-\\><C-n><C-w>c", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+ group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
+ callback = function()
+  vim.highlight.on_yank()
+ end,
+})
