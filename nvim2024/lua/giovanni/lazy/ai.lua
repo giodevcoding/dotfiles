@@ -4,14 +4,29 @@ return {
         config = function()
             local _99 = require("99")
 
-            -- For logging that is to a file if you wish to trace through requests
-            -- for reporting bugs, i would not rely on this, but instead the provided
-            -- logging mechanisms within 99.  This is for more debugging purposes
             local cwd = vim.uv.cwd()
             local basename = vim.fs.basename(cwd)
+            local home = vim.fn.expand("~")
+
+            local opencode_dirs = {
+                home .. "/code/side",
+                home .. "/code/obsidian",
+            }
+
+            local function get_provider_config()
+                for _, dir in ipairs(opencode_dirs) do
+                    if cwd:sub(1, #dir) == dir then
+                        return _99.Providers.OpenCodeProvider, "ollama-cloud/kimi-k2.6:cloud"
+                    end
+                end
+                return _99.Providers.ClaudeCodeProvider, "claude-sonnet-4-6"
+            end
+
+            local provider, model = get_provider_config()
+
             _99.setup({
-                provider = _99.Providers.ClaudeCodeProvider,
-                model = "claude-opus-4-5",
+                provider = provider,
+                model = model,
 
                 logger = {
                     level = _99.DEBUG,
@@ -84,7 +99,7 @@ return {
                 _99.visual()
             end)
 
-            vim.keymap.set("v", "<leader>9l", function()
+            vim.keymap.set("n", "<leader>9l", function()
                 _99.view_logs()
             end)
 
@@ -95,6 +110,10 @@ return {
 
             vim.keymap.set("n", "<leader>9m", function()
                 require("99.extensions.telescope").select_model()
+            end)
+
+            vim.keymap.set("n", "<leader>9p", function()
+                require("99.extensions.telescope").select_provider()
             end)
         end,
     },

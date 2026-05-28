@@ -8,12 +8,13 @@
     "linear-personal": {
       "type": "remote",
       "url": "https://mcp.linear.app/mcp",
-      "oauth": {}
     },
     "linear-quickdraw": {
       "type": "remote",
       "url": "https://mcp.linear.app/mcp",
-      "oauth": {}
     }
-  }
+  },
+  "tools": {
+    "linear-*": false
+  },
 }

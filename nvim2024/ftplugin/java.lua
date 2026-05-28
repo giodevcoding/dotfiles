@@ -18,7 +18,7 @@ local path_to_config = path_to_jdtls .. "/config_mac"
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
-local java_exec = vim.fn.glob('~/.asdf/installs/java/corretto-23.0.2.7.1/bin/java')
+local java_exec = vim.fn.glob('~/.local/share/mise/installs/java/corretto-23.0.2.7.1/bin/java')
 local jdtls_jar = vim.fn.glob(path_to_jdtls .. '/plugins/org.eclipse.equinox.launcher_*.jar')
 
 local jdtls_config = {
