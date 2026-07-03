@@ -59,7 +59,12 @@ M = {
         },
     },
     show_update_window = true,
-    window_decorations = "RESIZE"
+    window_decorations = "NONE",
+    front_end = "WebGpu",
+    webgpu_power_preference = "HighPerformance",
+    prefer_egl = true,
+    max_fps = 120,
+    animation_fps = 120,
 }
 
 
@@ -79,6 +84,11 @@ M.font_size = 15.0
 --Windows
 if (exists("C:\\Windows")) then
     M.default_prog = { 'pwsh-preview' }
+end
+
+--Linux (Fedora)
+if wezterm.target_triple:find('linux') and exists('/etc/fedora-release') then
+    M.font_size = 12.0
 end
 
 return M

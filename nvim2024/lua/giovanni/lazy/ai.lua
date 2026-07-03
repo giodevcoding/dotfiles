@@ -10,7 +10,7 @@ return {
             local cwd = vim.uv.cwd()
             local basename = vim.fs.basename(cwd)
             _99.setup({
-                provider = _99.Providers.ClaudeCodeProvider,
+                provider = _99.Providers.OpenCodeProvider,
                 model = "claude-opus-4-5",
 
                 logger = {
