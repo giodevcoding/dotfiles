@@ -6,8 +6,17 @@ local home = os.getenv("HOME")
 
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = jdtls_setup.find_root(root_markers)
+
+-- submodule (e.g. backend/pom.xml) matches before parent .git repo root.
+-- prefer the git repo root when one exists further up, so cache workspace
+-- and jdtls root cover the whole repo, not just the submodule.
+local git_root = vim.fs.dirname(vim.fs.find(".git", { path = root_dir, upward = true })[1])
+if git_root then
+    root_dir = git_root
+end
+
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-local workspace_dir = home .. "/.cache/jdtls/workspace" .. project_name
+local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
 local path_to_mason_packages = home .. "/.local/share/nvim/mason/packages"
 
@@ -43,7 +52,7 @@ local jdtls_config = {
 
         '-data', workspace_dir
     },
-    root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
+    root_dir = root_dir,
     on_attach = function()
         functions.add_keymappings_on_attach()
     end,
