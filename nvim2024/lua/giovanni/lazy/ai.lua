@@ -120,6 +120,11 @@ return {
     },
     {
         "carlos-algms/agentic.nvim",
+        enabled = function()
+            local home = vim.fn.expand("~")
+            local is_work = vim.fs.basename(home) == "giovanni.panzetta"
+            return not is_work
+        end,
         opts = function()
             local home = vim.fn.expand("~")
             local is_work = vim.fs.basename(home) == "giovanni.panzetta"
@@ -131,6 +136,16 @@ return {
 
             return {
                 provider = provider,
+                acp_providers = {
+                    ["claude-agent-acp"] = {
+                        initial_model = "sonnet",
+                    },
+                },
+                keymaps = {
+                    widget = {
+                        switch_model = "<leader>am",
+                    },
+                },
             }
         end,
         -- these are just suggested keymaps; customize as desired
@@ -184,6 +199,131 @@ return {
                 desc = "Add all buffer diagnostics to Agentic",
                 mode = { "n" },
             },
+            {
+                "<leader>ax",
+                function()
+                    require("agentic").stop_generation()
+                end,
+                desc = "Stop Agentic generation",
+                mode = { "n", "v" },
+            },
         },
-    }
+        config = function(_, opts)
+            require("agentic").setup(opts)
+
+            -- Double-<Esc> in normal mode, in any Agentic window, stops generation
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "Agentic*",
+                callback = function(args)
+                    local last_esc = 0
+                    vim.keymap.set("n", "<Esc>", function()
+                        local now = vim.uv.now()
+                        if now - last_esc < 400 then
+                            require("agentic").stop_generation()
+                            last_esc = 0
+                        else
+                            last_esc = now
+                        end
+                    end, { buffer = args.buf, desc = "Double-Esc: stop Agentic generation" })
+                end,
+            })
+        end,
+    },
+    {
+        "coder/claudecode.nvim",
+        dependencies = { "folke/snacks.nvim" },
+        cond = function()
+            local home = vim.fn.expand("~")
+            return vim.fs.basename(home) == "giovanni.panzetta"
+        end,
+        opts = {
+            terminal = {
+                provider = "snacks",
+            },
+        },
+        keys = {
+            {
+                "<leader>ac",
+                "<cmd>ClaudeCode<cr>",
+                mode = { "n", "v" },
+                desc = "Toggle Claude Code",
+            },
+            {
+                "<leader>ai",
+                "<cmd>ClaudeCodeFocus<cr>",
+                mode = { "n", "v" },
+                desc = "Focus Claude Code",
+            },
+            {
+                "<leader>af",
+                "<cmd>ClaudeCodeSend<cr>",
+                mode = { "v" },
+                desc = "Send selection to Claude Code",
+            },
+            {
+                "<leader>af",
+                "<cmd>ClaudeCodeAdd %<cr>",
+                mode = { "n" },
+                desc = "Add current file to Claude Code",
+            },
+            {
+                "<leader>an",
+                function()
+                    vim.cmd("ClaudeCodeStop")
+                    vim.cmd("ClaudeCode")
+                end,
+                mode = { "n", "v" },
+                desc = "New Claude Code session",
+            },
+            {
+                "<leader>ar",
+                "<cmd>ClaudeCode --resume<cr>",
+                desc = "Claude Code Resume session",
+                silent = true,
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>ad", -- ai Diagnostics
+                function()
+                    local d = vim.diagnostic.get(0, { lnum = vim.api.nvim_win_get_cursor(0)[1] - 1 })
+                    if vim.tbl_isempty(d) then
+                        vim.notify("No diagnostics on current line", vim.log.levels.WARN)
+                        return
+                    end
+                    local lines = {}
+                    for _, item in ipairs(d) do
+                        table.insert(lines, string.format("%s:%d: %s", vim.fn.expand("%"), item.lnum + 1, item.message))
+                    end
+                    require("claudecode.terminal").send_to_terminal(table.concat(lines, "\n"), { submit = false })
+                end,
+                desc = "Add current line diagnostic to Claude Code",
+                mode = { "n" },
+            },
+            {
+                "<leader>aD", -- ai all Diagnostics
+                function()
+                    local d = vim.diagnostic.get(0)
+                    if vim.tbl_isempty(d) then
+                        vim.notify("No diagnostics in buffer", vim.log.levels.WARN)
+                        return
+                    end
+                    local lines = {}
+                    for _, item in ipairs(d) do
+                        table.insert(lines, string.format("%s:%d: %s", vim.fn.expand("%"), item.lnum + 1, item.message))
+                    end
+                    require("claudecode.terminal").send_to_terminal(table.concat(lines, "\n"), { submit = false })
+                end,
+                desc = "Add all buffer diagnostics to Claude Code",
+                mode = { "n" },
+            },
+            {
+                "<leader>ax",
+                function()
+                    vim.notify("claudecode.nvim: no stop-generation API; use Ctrl-C in terminal", vim.log.levels.WARN)
+                end,
+                desc = "Stop Claude Code generation (unsupported)",
+                mode = { "n", "v" },
+            },
+        },
+    },
 }
