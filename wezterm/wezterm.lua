@@ -58,13 +58,13 @@ M = {
             action = wezterm.action.ToggleFullScreen,
         },
     },
-    show_update_window = true,
     window_decorations = "NONE",
-    front_end = "WebGpu",
-    webgpu_power_preference = "HighPerformance",
     prefer_egl = true,
     max_fps = 120,
     animation_fps = 120,
+
+    front_end = "WebGpu",
+    webgpu_power_preference = "LowPower",
 }
 
 

@@ -3,23 +3,22 @@ return {
         "ThePrimeagen/99",
         config = function()
             local _99 = require("99")
+            local PiProvider = require("giovanni.pi_provider")
+
+            -- register so it shows up in the <leader>9p provider picker
+            _99.Providers.PiProvider = PiProvider
 
             local cwd = vim.uv.cwd()
             local basename = vim.fs.basename(cwd)
             local home = vim.fn.expand("~")
 
-            local opencode_dirs = {
-                home .. "/code/side",
-                home .. "/code/obsidian",
-            }
+            local is_work = vim.fs.basename(home) == "giovanni.panzetta"
 
             local function get_provider_config()
-                for _, dir in ipairs(opencode_dirs) do
-                    if cwd:sub(1, #dir) == dir then
-                        return _99.Providers.OpenCodeProvider, "ollama-cloud/glm-5.2:cloud"
-                    end
+                if is_work then
+                    return _99.Providers.ClaudeCodeProvider, "claude-sonnet-4-6"
                 end
-                return _99.Providers.ClaudeCodeProvider, "claude-sonnet-4-6"
+                return PiProvider, "ollama-cloud/glm-5.3-flash"
             end
 
             local provider, model = get_provider_config()
