@@ -117,108 +117,59 @@ return {
         end,
     },
     {
-        "coder/claudecode.nvim",
-        dependencies = { "folke/snacks.nvim" },
-        config = true,
+        "carlos-algms/agentic.nvim",
+
+        --- @type agentic.PartialUserConfig
         opts = {
-            terminal = {
-                provider = "external",
-                provider_opts = {
-                    external_terminal_cmd = function(cmd, env)
-                        return "tmux split-window -h -l 30% -c " .. vim.fn.getcwd() .. ' ' .. cmd
-                    end
-                }
-            }
+            -- Any ACP-compatible provider works. Built-in: "claude-agent-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "copilot-acp" | "auggie-acp" | "mistral-vibe-acp" | "cline-acp" | "goose-acp" | "kiro-acp" | "pi-acp"
+            provider = "pi-acp", -- setting the name here is all you need to get started
         },
+
+        -- these are just suggested keymaps; customize as desired
         keys = {
-            { "<leader>c",  nil,                              desc = "AI/Claude Code" },
-            { "<leader>cc", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
-            { "<leader>cf", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
-            { "<leader>cr", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
-            { "<leader>cC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-            { "<leader>cm", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-            { "<leader>cb", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
-            { "<leader>cs", "<cmd>ClaudeCodeSend<cr>",        mode = "v",                  desc = "Send to Claude" },
             {
-                "<leader>cs",
-                "<cmd>ClaudeCodeTreeAdd<cr>",
-                desc = "Add file",
-                ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+                "<leader>ac",
+                function() require("agentic").toggle() end,
+                mode = { "n", "v" },
+                desc = "Toggle Agentic Chat"
             },
-            -- Diff management
-            { "<leader>cy", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-            { "<leader>cn", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+            {
+                "<leader>af",
+                function() require("agentic").add_selection_or_file_to_context() end,
+                mode = { "n", "v" },
+                desc = "Add file or selection to Agentic to Context"
+            },
+            {
+                "<leader>an",
+                function() require("agentic").new_session() end,
+                mode = { "n", "v" },
+                desc = "New Agentic Session"
+            },
+            {
+                "<leader>ar", -- ai Restore
+                function()
+                    require("agentic").restore_session()
+                end,
+                desc = "Agentic Restore session",
+                silent = true,
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>ad", -- ai Diagnostics
+                function()
+                    require("agentic").add_current_line_diagnostics()
+                end,
+                desc = "Add current line diagnostic to Agentic",
+                mode = { "n" },
+            },
+            {
+                "<leader>aD", -- ai all Diagnostics
+                function()
+                    require("agentic").add_buffer_diagnostics()
+                end,
+                desc = "Add all buffer diagnostics to Agentic",
+                mode = { "n" },
+            },
         },
-    },
-    {
-        "olimorris/codecompanion.nvim",
-        enabled = false,
-        opts = {},
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            local codecompanion = require("codecompanion")
-            codecompanion.setup({
-                adapters = {
-                    http = {
-                        qwen = function()
-                            return require("codecompanion.adapters").extend("ollama", {
-                                schema = {
-                                    model = {
-                                        default = "qwen2.5:14b",
-                                    },
-                                },
-                            })
-                        end,
-                    },
-                    acp = {
-                        claude_code = function()
-                            return require("codecompanion.adapters").extend("claude_code", {
-                                env = {
-                                    CLAUDE_CODE_OAUTH_TOKEN = os.getenv("CLAUDE_CODE_OAUTH_TOKEN")
-                                }
-                            });
-                        end
-                    }
-                },
-                strategies = {
-                    chat = {
-                        adapter = "claude_code",
-                        -- adapter = "qwen",
-                    },
-                    inline = {
-                        adapter = "claude_code",
-                        -- adapter = "qwen"
-                    },
-                    cmd = {
-                        adapter = "claude_code"
-                    }
-                },
-                display = {
-                    action_palette = {
-                        provider = "telescope"
-                    },
-                    diff = {
-                        enabled = true,
-                        provider = "mini_diff"
-                    },
-                    chat = {
-                        window = {
-                            position = 'right',
-                            width = 0.3
-                        }
-                    }
-                }
-            })
-            vim.keymap.set("n", "<leader>cc", function() vim.cmd [[ CodeCompanionChat Toggle ]] end)
-            vim.keymap.set("n", "<leader>cn", function() vim.cmd [[ CodeCompanionChat ]] end)
-            vim.keymap.set("n", "<leader>ci", ":CodeCompanion ")
-            vim.keymap.set("v", "<leader>ci", ":CodeCompanion ")
-            vim.keymap.set("n", "<leader>ca", function() vim.cmd [[ CodeCompanionActions ]] end)
-            vim.keymap.set("v", "<leader>ca", function() vim.cmd [[ CodeCompanionActions ]] end)
-            vim.keymap.set("v", "<leader>ce", function() codecompanion.prompt("explain") end)
-        end
     }
 }

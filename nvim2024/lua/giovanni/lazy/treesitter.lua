@@ -1,34 +1,21 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
     config = function()
-        require'nvim-treesitter.configs'.setup {
-            -- A list of parser names, or "all" (the five listed parsers should always be installed)
-            ensure_installed = { "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query" },
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-            auto_install = true,
-
-            -- List of parsers to ignore installing (for "all")
-            ignore_install = { "comment", "jsdoc" },
-
-            ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-            -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-            highlight = {
-                enable = true,
-
-                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-                -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-                -- Using this option may slow down your editor, and you may see some duplicate highlights.
-                -- Instead of true it can also be a list of languages
-                additional_vim_regex_highlighting = {"php"},
-            },
+        require("nvim-treesitter").install {
+            "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "php",
         }
-        vim.cmd([[TSUpdate]])
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = {
+                "javascript", "typescript", "c", "lua",
+                "vim", "vimdoc", "query", "php", "gotmpl",
+            },
+            callback = function(args)
+                pcall(vim.treesitter.start, args.buf)
+            end,
+        })
 
         vim.filetype.add({
             extension = {
