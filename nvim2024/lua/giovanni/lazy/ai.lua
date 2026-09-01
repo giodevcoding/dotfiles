@@ -16,7 +16,7 @@ return {
 
             local function get_provider_config()
                 if is_work then
-                    return _99.Providers.ClaudeCodeProvider, "claude-sonnet-4-6"
+                    return _99.Providers.ClaudeCodeProvider, "claude-sonnet-5"
                 end
                 return PiProvider, "ollama-cloud/glm-5.3-flash"
             end
@@ -32,6 +32,8 @@ return {
                     path = "/tmp/" .. basename .. ".99.debug",
                     print_on_error = true,
                 },
+
+                tmp_dir = "./.99",
 
                 --- A new feature that is centered around tags
                 completion = {
@@ -118,18 +120,30 @@ return {
     },
     {
         "carlos-algms/agentic.nvim",
+        opts = function()
+            local home = vim.fn.expand("~")
+            local is_work = vim.fs.basename(home) == "giovanni.panzetta"
 
-        --- @type agentic.PartialUserConfig
-        opts = {
-            -- Any ACP-compatible provider works. Built-in: "claude-agent-acp" | "gemini-acp" | "codex-acp" | "opencode-acp" | "cursor-acp" | "copilot-acp" | "auggie-acp" | "mistral-vibe-acp" | "cline-acp" | "goose-acp" | "kiro-acp" | "pi-acp"
-            provider = "pi-acp", -- setting the name here is all you need to get started
-        },
+            local provider = "pi-acp"
+            if is_work then
+                provider = "claude-agent-acp"
+            end
 
+            return {
+                provider = provider,
+            }
+        end,
         -- these are just suggested keymaps; customize as desired
         keys = {
             {
                 "<leader>ac",
-                function() require("agentic").toggle() end,
+                function() require("agentic").toggle({ auto_add_to_context = false, focus_prompt = false }) end,
+                mode = { "n", "v" },
+                desc = "Toggle Agentic Chat"
+            },
+            {
+                "<leader>ai",
+                function() require("agentic").open({ auto_add_to_context = false,  }) end,
                 mode = { "n", "v" },
                 desc = "Toggle Agentic Chat"
             },
