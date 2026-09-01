@@ -238,15 +238,15 @@ return {
         end,
         opts = {
             terminal = {
-                provider = "snacks",
+                provider = "native",
             },
         },
         keys = {
             {
                 "<leader>ac",
-                "<cmd>ClaudeCode<cr>",
+                function() require("claudecode.terminal").ensure_visible() end,
                 mode = { "n", "v" },
-                desc = "Toggle Claude Code",
+                desc = "Open Claude Code (no focus)",
             },
             {
                 "<leader>ai",
