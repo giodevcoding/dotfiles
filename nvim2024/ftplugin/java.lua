@@ -2,6 +2,7 @@ local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 
 local functions = require("giovanni.functions")
+local java = require("giovanni.java")
 local home = os.getenv("HOME")
 
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -53,8 +54,10 @@ local jdtls_config = {
         '-data', workspace_dir
     },
     root_dir = root_dir,
-    on_attach = function()
-        functions.add_keymappings_on_attach()
+    on_attach = function(client, bufnr)
+        functions.add_keymappings_on_attach(client, bufnr)
+        vim.keymap.set("n", "<leader>va", function() java.code_action_with_extras() end,
+            { buffer = bufnr, remap = false })
     end,
     settings = {
         java = {
