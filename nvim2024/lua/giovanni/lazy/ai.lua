@@ -151,13 +151,13 @@ return {
         -- these are just suggested keymaps; customize as desired
         keys = {
             {
-                "<leader>ac",
+                "<leader>ao",
                 function() require("agentic").toggle({ auto_add_to_context = false, focus_prompt = false }) end,
                 mode = { "n", "v" },
                 desc = "Toggle Agentic Chat"
             },
             {
-                "<leader>ai",
+                "<leader>ac",
                 function() require("agentic").open({ auto_add_to_context = false,  }) end,
                 mode = { "n", "v" },
                 desc = "Toggle Agentic Chat"
@@ -240,16 +240,52 @@ return {
             terminal = {
                 provider = "native",
             },
+            diff_opts = {
+                layout = "unified",
+                auto_resize_terminal = false,
+            },
         },
+        config = function(_, opts)
+            require("claudecode").setup(opts)
+
+            -- `auto_resize_terminal = false` stops the plugin from resizing the
+            -- terminal itself, but the diff layout still runs `wincmd =` which
+            -- equalizes all splits regardless. winfixwidth is the only thing
+            -- that survives that.
+            vim.api.nvim_create_autocmd("TermOpen", {
+                pattern = "*",
+                callback = function(args)
+                    if vim.api.nvim_buf_get_name(args.buf):match("claude") then
+                        vim.schedule(function()
+                            local win = vim.fn.bufwinid(args.buf)
+                            if win ~= -1 then
+                                vim.wo[win].winfixwidth = true
+                            end
+                        end)
+                    end
+                end,
+            })
+
+            -- Auto-enter terminal-insert mode whenever the Claude Code buffer
+            -- gets focus (window switch, not just on open).
+            vim.api.nvim_create_autocmd("BufEnter", {
+                pattern = "*",
+                callback = function(args)
+                    if vim.bo[args.buf].buftype == "terminal" and vim.api.nvim_buf_get_name(args.buf):match("claude") then
+                        vim.cmd("startinsert")
+                    end
+                end,
+            })
+        end,
         keys = {
             {
-                "<leader>ac",
+                "<leader>ao",
                 function() require("claudecode.terminal").ensure_visible() end,
                 mode = { "n", "v" },
                 desc = "Open Claude Code (no focus)",
             },
             {
-                "<leader>ai",
+                "<leader>ac",
                 "<cmd>ClaudeCodeFocus<cr>",
                 mode = { "n", "v" },
                 desc = "Focus Claude Code",
