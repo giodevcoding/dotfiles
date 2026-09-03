@@ -140,6 +140,10 @@ return {
                     ["claude-agent-acp"] = {
                         initial_model = "sonnet",
                     },
+                    ["pi-acp"] = {
+                        command = "node",
+                        args = { vim.fn.expand("~/code/pi-acp/dist/index.js") },
+                    },
                 },
                 keymaps = {
                     widget = {
