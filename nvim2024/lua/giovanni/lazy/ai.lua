@@ -167,6 +167,12 @@ return {
                 desc = "Toggle Agentic Chat"
             },
             {
+                "<leader>ai",
+                function() require("agentic").open({ auto_add_to_context = false, focus_prompt = true }) end,
+                mode = { "n", "v" },
+                desc = "Focus Agentic Chat (open if needed)"
+            },
+            {
                 "<leader>af",
                 function() require("agentic").add_selection_or_file_to_context() end,
                 mode = { "n", "v" },
@@ -290,9 +296,15 @@ return {
             },
             {
                 "<leader>ac",
+                function() require("claudecode.terminal").toggle({ focus = false }) end,
+                mode = { "n", "v" },
+                desc = "Toggle Claude Code (no focus)",
+            },
+            {
+                "<leader>ai",
                 "<cmd>ClaudeCodeFocus<cr>",
                 mode = { "n", "v" },
-                desc = "Focus Claude Code",
+                desc = "Focus Claude Code (open if needed)",
             },
             {
                 "<leader>af",
