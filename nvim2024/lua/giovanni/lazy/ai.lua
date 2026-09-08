@@ -126,20 +126,9 @@ return {
             return not is_work
         end,
         opts = function()
-            local home = vim.fn.expand("~")
-            local is_work = vim.fs.basename(home) == "giovanni.panzetta"
-
-            local provider = "pi-acp"
-            if is_work then
-                provider = "claude-agent-acp"
-            end
-
             return {
-                provider = provider,
+                provider = "pi-acp",
                 acp_providers = {
-                    ["claude-agent-acp"] = {
-                        initial_model = "sonnet",
-                    },
                     ["pi-acp"] = {
                         command = "node",
                         args = { vim.fn.expand("~/code/pi-acp/dist/index.js") },
