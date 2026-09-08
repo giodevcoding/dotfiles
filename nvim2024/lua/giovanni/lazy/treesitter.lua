@@ -5,14 +5,14 @@ return {
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter").install {
-            "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "php", "vue", "java"
+            "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "php", "vue", "java", "markdown"
         }
 
         vim.api.nvim_create_autocmd("FileType", {
             pattern = {
                 "javascript", "typescript", "c", "lua",
                 "vim", "vimdoc", "query", "php", "gotmpl", "vue",
-                "java"
+                "java", "markdown"
             },
             callback = function(args)
                 pcall(vim.treesitter.start, args.buf)

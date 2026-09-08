@@ -152,17 +152,16 @@ return {
                 },
             }
         end,
-        -- these are just suggested keymaps; customize as desired
         keys = {
             {
                 "<leader>ao",
-                function() require("agentic").toggle({ auto_add_to_context = false, focus_prompt = false }) end,
+                function() require("agentic").open({ auto_add_to_context = false, focus_prompt = false }) end,
                 mode = { "n", "v" },
-                desc = "Toggle Agentic Chat"
+                desc = "Open Agentic Chat"
             },
             {
                 "<leader>ac",
-                function() require("agentic").open({ auto_add_to_context = false,  }) end,
+                function() require("agentic").toggle({ auto_add_to_context = false, focus_prompt = false }) end,
                 mode = { "n", "v" },
                 desc = "Toggle Agentic Chat"
             },
@@ -194,7 +193,7 @@ return {
                 mode = { "n", "v" },
             },
             {
-                "<leader>ad", -- ai Diagnostics
+                "<leader>ad",
                 function()
                     require("agentic").add_current_line_diagnostics()
                 end,
@@ -202,7 +201,7 @@ return {
                 mode = { "n" },
             },
             {
-                "<leader>aD", -- ai all Diagnostics
+                "<leader>aD",
                 function()
                     require("agentic").add_buffer_diagnostics()
                 end,
@@ -217,6 +216,62 @@ return {
                 desc = "Stop Agentic generation",
                 mode = { "n", "v" },
             },
+            {
+                "<leader>as",
+                function()
+                    require("agentic").select_session()
+                end,
+                desc = "Select Agentic session",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>a]",
+                function()
+                    require("agentic").next_session()
+                end,
+                desc = "Next Agentic session",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>a[",
+                function()
+                    require("agentic").prev_session()
+                end,
+                desc = "Previous Agentic session",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>aP",
+                function()
+                    require("agentic").new_session_with_provider()
+                end,
+                desc = "New Agentic session with provider picker",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>ap",
+                function()
+                    require("agentic").switch_provider()
+                end,
+                desc = "Switch Agentic provider",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>al",
+                function()
+                    require("agentic").rotate_layout()
+                end,
+                desc = "Rotate Agentic layout",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>aX",
+                function()
+                    require("agentic").destroy_session()
+                end,
+                desc = "Destroy Agentic session",
+                mode = { "n", "v" },
+            },
         },
         config = function(_, opts)
             require("agentic").setup(opts)
@@ -225,6 +280,10 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "Agentic*",
                 callback = function(args)
+                    if args.match == "AgenticChat" then
+                        pcall(vim.treesitter.start, args.buf, "markdown")
+                    end
+
                     local last_esc = 0
                     vim.keymap.set("n", "<Esc>", function()
                         local now = vim.uv.now()
