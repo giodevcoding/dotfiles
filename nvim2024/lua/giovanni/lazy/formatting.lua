@@ -108,10 +108,6 @@ return {
         end
     },
     {
-        'preservim/vim-markdown',
-        dependencies = { 'godlygeek/tabular' }
-    },
-    {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {}

@@ -41,6 +41,18 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
+-- linematch makes diff mode lag on markdown (one big hunk of long lines),
+-- so it's off for markdown and left on for everything else
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    if args.match == "markdown" then
+      vim.opt.diffopt:remove("linematch:40")
+    elseif not vim.list_contains(vim.opt.diffopt:get(), "linematch:40") then
+      vim.opt.diffopt:append("linematch:40")
+    end
+  end,
+})
+
 vim.filetype.add({
   filename = {
     ['Fastfile'] = 'ruby',
@@ -53,3 +65,4 @@ vim.filetype.add({
     ['Snapfile'] = 'ruby',
   },
 })
+
