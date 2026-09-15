@@ -121,9 +121,11 @@ return {
     {
         "carlos-algms/agentic.nvim",
         enabled = function()
-            local home = vim.fn.expand("~")
-            local is_work = vim.fs.basename(home) == "giovanni.panzetta"
-            return not is_work
+            return true
+            -- TRYING ONLY PI SO HERE WE GO
+            -- local home = vim.fn.expand("~")
+            -- local is_work = vim.fs.basename(home) == "giovanni.panzetta"
+            -- return not is_work
         end,
         opts = function()
             return {
@@ -291,8 +293,10 @@ return {
         "coder/claudecode.nvim",
         dependencies = { "folke/snacks.nvim" },
         cond = function()
-            local home = vim.fn.expand("~")
-            return vim.fs.basename(home) == "giovanni.panzetta"
+            return false
+            -- TRYING ONLY PI HERE WE GO
+            -- local home = vim.fn.expand("~")
+            -- return vim.fs.basename(home) == "giovanni.panzetta"
         end,
         opts = {
             terminal = {
