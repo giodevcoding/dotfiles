@@ -29,11 +29,11 @@ return {
 
                 logger = {
                     level = _99.DEBUG,
-                    path = "/tmp/" .. basename .. ".99.debug",
+                    path = "./.agents/tmp/99/debug.log",
                     print_on_error = true,
                 },
 
-                tmp_dir = "./.99",
+                tmp_dir = "./.agents/tmp/99",
 
                 --- A new feature that is centered around tags
                 completion = {
